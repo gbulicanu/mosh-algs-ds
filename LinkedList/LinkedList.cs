@@ -41,6 +41,13 @@ public class LinkedList
     {
         // O(1)
         var next = this.first?.Next;
+        
+        if(this.first == this.last)
+        {
+            this.first = this.last = null;
+            return;
+        }
+
         if(this.first != null && next != null)
         {
             this.first.Next = null;
@@ -51,6 +58,12 @@ public class LinkedList
     public void DeleteLast()
     {
         // O(n)
+        if(this.first == this.last)
+        {
+            this.first = this.last = null;
+            return;
+        }
+        
         if (this.last != null)
             this.last.Next = null;
 

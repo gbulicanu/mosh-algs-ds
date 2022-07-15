@@ -3,6 +3,9 @@ using static System.Console;
 
 LinkedList list = new();
 list.AddFirst(2); // [2]
+//list.DeleteLast();
+//list.Print();
+
 list.AddLast(3); // [2,3]
 list.AddFirst(1); // [1, 2, 3]
 
