@@ -1,17 +1,17 @@
 using static System.Console;
 
-class DynamicArray
+public class DynamicArray
 {
     private int[] items;
 
     private int count = 0;
 
-    DynamicArray(int length)
+    public DynamicArray(int length)
     {
         this.items = new int[length];
     }
 
-    void Insert(int item)
+    public void Insert(int item)
     {
         if (items.Length == this.count)
         {
@@ -27,15 +27,18 @@ class DynamicArray
         this.items[this.count++] = item;
     }
 
-    void RemoveAt(int index)
+    public void RemoveAt(int index)
     {
-        for (int i = 0; i < this.count; i++)
+        if (index < 0 || index >= count)
+            throw new IndexOutOfRangeException();
+
+        for (int i = index; i < this.count; i++)
             this.items[i] = items[i + 1];
 
         this.count--;
     }
 
-    int IndexOf(int value)
+    public int IndexOf(int value)
     {
         for (int i = 0; i < this.count; i++)
             if(this.items[i] == value)
@@ -44,7 +47,7 @@ class DynamicArray
         return -1;
     }
 
-    void Print()
+    public void Print()
     {
         for (int i = 0; i < this.count; i++)
             WriteLine(this.items[i]);
