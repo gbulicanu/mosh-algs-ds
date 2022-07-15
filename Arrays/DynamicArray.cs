@@ -1,77 +1,52 @@
-internal class DynamicArray
+using static System.Console;
+
+class DynamicArray
 {
-    private int[] arrayStore;
+    private int[] items;
 
-    private int initialSize;
-    private int currentSize = 0;
+    private int count = 0;
 
-    public DynamicArray(int initialSize)
+    DynamicArray(int length)
     {
-        this.initialSize = initialSize;
-        this.arrayStore = new int[initialSize];
+        this.items = new int[length];
     }
 
-    internal void Insert(int value)
+    void Insert(int item)
     {
-        if(currentSize < initialSize)
+        if (items.Length == this.count)
         {
-            this.arrayStore[this.currentSize] = value;
-            this.currentSize++;
+            int[] newItems = new int[this.count * 2];
+            
+            for (int i = 0; i < this.count; i++)
+                newItems[i] = this.items[i];
+
+            this.items = newItems;
+            this.items[this.count] = item;
         }
-        else
-        {
-            int[] arrayToGrow = new int[this.currentSize + this.initialSize];
-            for (int i = 0; i < this.arrayStore.Length; i++)
-            {
-                arrayToGrow[i] = this.arrayStore[i];
-            }
-            this.arrayStore = arrayToGrow;
-            this.arrayStore[this.currentSize] = value;
-        }
+
+        this.items[this.count++] = item;
     }
 
-    internal void RemoveAt(int index)
+    void RemoveAt(int index)
     {
-        if(index == this.currentSize)
-        {
-            this.arrayStore[this.currentSize] = 0;
-            this.currentSize--;
-        }
-        else if(index >= 0 && index < this.currentSize)
-        {
-            this.arrayStore[index] = 0;
-            for (int i = index; i < this.currentSize; i++)
-            {
-                this.arrayStore[i] = this.arrayStore[i + 1]; 
-            }
-            this.currentSize--;
-        }
+        for (int i = 0; i < this.count; i++)
+            this.items[i] = items[i + 1];
+
+        this.count--;
     }
 
-    internal int IndexOf(int value)
+    int IndexOf(int value)
     {
-        for (int i = 0; i < this.arrayStore.Length; i++)
-        {
-            if(this.arrayStore[i] == value)
-            {
+        for (int i = 0; i < this.count; i++)
+            if(this.items[i] == value)
                 return i;
-            }
-        }
 
         return -1;
     }
 
-    internal void Print()
+    void Print()
     {
-        Console.Write("[");
-        for (int i = 0; i <= this.currentSize; i++)
-        {
-            Console.Write(this.arrayStore[i]);
-            if (i != this.currentSize) 
-            {
-                Console.Write(",");
-            }
-        }
-        Console.WriteLine("]");
+        for (int i = 0; i < this.count; i++)
+            WriteLine(this.items[i]);
     }
 }
