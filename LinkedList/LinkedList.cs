@@ -63,7 +63,7 @@ public class LinkedList
 
         if (IsSingleNode())
             this.first = this.last = null;
-        else
+        else if(this.first != null)
         {
             this.first.next = null;
             this.first = second;
