@@ -6,7 +6,7 @@ WriteLine($"Length: {list.Length}");
 list.AddFirst(2); // [2]
 WriteLine($"Length: {list.Length}");
 //list.DeleteLast();
-//list.Print();
+//WriteLine(list);
 
 list.AddLast(3); // [2,3]
 list.AddFirst(1); // [1, 2, 3]
@@ -14,21 +14,21 @@ list.AddFirst(1); // [1, 2, 3]
 WriteLine($"Length: {list.Length}");
 
 WriteLine("Initial:");
-list.Print();
+WriteLine(list);
 
 list.AddLast(4);
 list.AddLast(5);
 
 WriteLine("After AddLast:");
-list.Print();
+WriteLine(list);
 
-list.DeleteFirst();
-WriteLine("After DeleteFirst:");
-list.Print();
+list.RemoveFirst();
+WriteLine("After RemoveFirst:");
+WriteLine(list);
 
-list.DeleteLast();
-WriteLine("After DeleteLast:");
-list.Print();
+list.RemoveLast();
+WriteLine("After RemoveLast:");
+WriteLine(list);
 
 WriteLine($"Contains(3): {list.Contains(3)}");
 WriteLine($"Contains(5): {list.Contains(5)}");
@@ -39,4 +39,6 @@ WriteLine($"IndexOf(3): {list.IndexOf(3)}");
 WriteLine($"IndexOf(5): {list.IndexOf(5)}");
 WriteLine($"IndexOf(4): {list.IndexOf(4)}");
 WriteLine($"IndexOf(2): {list.IndexOf(2)}");
+
+WriteLine(list);
 

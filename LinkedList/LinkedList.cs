@@ -53,7 +53,7 @@ public class LinkedList
         this.length++;
     }
 
-    public void DeleteFirst()
+    public void RemoveFirst()
     {
         // O(1)
         var second = this.first?.next;
@@ -72,7 +72,7 @@ public class LinkedList
         this.length--;
     }
 
-    public void DeleteLast()
+    public void RemoveLast()
     {
         // O(n)
         if (IsEmpty())
@@ -136,6 +136,11 @@ public class LinkedList
         }
 
         return result;
+    }
+
+    public override string ToString()
+    {
+        return $"[{string.Join(" -> ",  this.ToArray().Select(i => i.ToString()).ToArray())}]";
     }
 
     private bool IsSingleNode()
