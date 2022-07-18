@@ -2,130 +2,161 @@ using static System.Console;
 
 public class LinkedList
 {
+    private class Node
+    {
+        internal int value;
+        internal Node? next;
+
+        internal Node(int value)
+        {
+            this.value = value;
+        }
+    }
+
     private Node? first;
     private Node? last;
 
-    public void AddFirst(int value)
-    {
-        // O(n)
-        var node = new Node { Value = value, Next = this.first };
-        this.first = node;
-        
-        if (this.last == null)
-            this.last = node;
-    }
-    
-    public void AddLast(int value)
-    {
-        // O(n)
-        var node = new Node { Value = value };
-        this.last = node;
+    private int length;
 
-        if (this.first == null)
+    // O(1)
+    public int Length { get { return this.length; } }
+
+    public void AddFirst(int item)
+    {
+        // O(n)
+        Node node = new(item);
+
+        if (IsEmpty())
+            this.first = this.last = node;
+        else
         {
+            node.next = this.first;
             this.first = node;
-            return;
         }
 
-        Node? prevLast = this.first;
-        while (prevLast != null && prevLast.Next != null)
-            prevLast = prevLast.Next;
+        this.length++;
+    }
+    
+    public void AddLast(int item)
+    {
+        // O(n)
+        Node node = new(item);
 
-        if (prevLast == null)
-            return;
-            
-        prevLast.Next = node;
+        if (IsEmpty())
+            this.first = this.last = node;
+        else if(this.last != null)
+        {
+            this.last.next = node;
+            this.last = node;
+        }
+
+        this.length++;
     }
 
     public void DeleteFirst()
     {
         // O(1)
-        var next = this.first?.Next;
-        
-        if(this.first == this.last)
-        {
-            this.first = this.last = null;
-            return;
-        }
+        var second = this.first?.next;
 
-        if(this.first != null && next != null)
+        if (IsEmpty())
+            throw new InvalidOperationException("Sequence contains no elements");
+
+        if (IsSingleNode())
+            this.first = this.last = null;
+        else
         {
-            this.first.Next = null;
-            this.first = next;
+            this.first.next = null;
+            this.first = second;
         }
+        
+        this.length--;
     }
 
     public void DeleteLast()
     {
         // O(n)
-        if(this.first == this.last)
-        {
+        if (IsEmpty())
+            throw new InvalidOperationException("Sequence contains no elements");
+
+        if (IsSingleNode())
             this.first = this.last = null;
-            return;
-        }
-        
-        if (this.last != null)
-            this.last.Next = null;
-
-        Node? prevToLast = this.first;
-        while (prevToLast != null && prevToLast.Next != null)
+        else
         {
-            if (prevToLast.Next == last)
-                break;
-
-            prevToLast = prevToLast.Next;
+            var previous = this.GetPreviousNode(this.last);
+            this.last = previous;
+            if(this.last != null) this.last.next = null;
         }
 
-        if (prevToLast == null)
-            return;
-
-        prevToLast.Next = null;
+        this.length--;
     }
 
-    public bool Contains(int value)
+    public bool Contains(int item)
     {
         // O(N)
-        Node? current = first;
-        while(current != null && current.Next != null)
-        {
-            if(current.Value == value)
-                return true;
-
-            current = current.Next;
-        }
-
-        return current?.Value == value;
+        return IndexOf(item) != -1;
     }
 
-    public int IndexOf(int value)
+    public int IndexOf(int item)
     {
         // O(N)
-        int fountAt = 0;
-        Node? current = first;
-        while(current != null && current.Next != null)
+        int index = 0;
+        var current = this.first;
+        while(current != null)
         {
-            if(current.Value == value)
-                return fountAt;
+            if(current.value == item)
+                return index;
 
-            current = current.Next;
-            fountAt++;
+            current = current.next;
+            index++;
         }
 
-        return current?.Value == value ? fountAt : -1;
+        return -1;
     }
 
     public void Print()
     {
-        Node? current = first;
-        while(current != null && current.Next != null)
+        Node? current = this.first;
+        while(current != null)
         {
-            WriteLine(current.Value);
-            current = current.Next;
+            WriteLine(current.value);
+            current = current.next;
         }
-        
-        if(current == null)
-            return;
+    }
 
-        WriteLine(current.Value);
+    public int[] ToArray()
+    {
+        int[] result = new int[this.length];
+        
+        Node? current = this.first;
+        int index = 0;
+        while(current != null)
+        {
+            result[index++] = current.value;
+            current = current.next;
+        }
+
+        return result;
+    }
+
+    private bool IsSingleNode()
+    {
+        return this.first == this.last;
+    }
+
+    private bool IsEmpty()
+    {
+        return this.first == null;
+    }
+
+    private Node? GetPreviousNode(Node? node)
+    {
+        Node? current = this.first;
+        while (current != null)
+        {
+            if (current.next == node) return current;
+            current = current.next;
+        }
+
+        return null;
     }
 }
