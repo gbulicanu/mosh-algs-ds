@@ -72,6 +72,25 @@ public class LinkedList
         this.length--;
     }
 
+    public void Reverse()
+    {
+        if(IsEmpty() || IsSingleNode()) return;
+
+        var initialLast = this.last;
+        var currentLast = this.last;
+        var newLast = this.GetPreviousNode(this.last);
+        while(newLast != null)
+        {
+            newLast.next = null;
+            if (currentLast != null) currentLast.next = newLast;
+            currentLast = newLast;
+            newLast = this.GetPreviousNode(newLast);
+        }
+
+
+        this.first = initialLast;
+    }
+
     public void RemoveLast()
     {
         // O(n)

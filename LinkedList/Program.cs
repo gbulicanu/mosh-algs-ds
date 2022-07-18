@@ -42,3 +42,9 @@ WriteLine($"IndexOf(2): {list.IndexOf(2)}");
 
 WriteLine(list);
 
+list.AddFirst(1);
+WriteLine(list);
+
+list.Reverse();
+WriteLine($"Reversed: {list}");
+
