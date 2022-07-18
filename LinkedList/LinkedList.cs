@@ -76,19 +76,19 @@ public class LinkedList
     {
         if(IsEmpty() || IsSingleNode()) return;
 
-        var initialLast = this.last;
-        var currentLast = this.last;
-        var newLast = this.GetPreviousNode(this.last);
-        while(newLast != null)
+        var previous = this.first;
+        var current = this.first?.next;
+        while(current != null)
         {
-            newLast.next = null;
-            if (currentLast != null) currentLast.next = newLast;
-            currentLast = newLast;
-            newLast = this.GetPreviousNode(newLast);
+            var next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
         }
 
-
-        this.first = initialLast;
+        this.last = this.first;
+        if (this.last != null) this.last.next = null;
+        this.first = previous;
     }
 
     public void RemoveLast()
