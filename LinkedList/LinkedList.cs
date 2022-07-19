@@ -113,11 +113,16 @@ public class LinkedList
         return first != null ? first.value : throw new ArgumentException("Invalid argument passed", nameof(k));;
     }
 
+    public void AddLoop()
+    {
+        this.last!.next = this.GetPreviousNode(this.last);
+    }
+
     public void PrintMiddle()
     {
         if (IsEmpty())
             throw new InvalidOperationException("Sequence contains no elements");
-            
+
         var first = this.first;
         var second = this.first;
         while (second != this.last && second?.next != last)
@@ -130,6 +135,25 @@ public class LinkedList
             WriteLine(first!.value);
         else
             WriteLine(first!.value + ", " + first!.next!.value);
+    }
+
+    public bool HasLoop()
+    {
+        if(IsEmpty() || IsSingleNode())
+            return false;
+
+        var slow = this.first;
+        var fast = this.first;
+
+        while (fast != null)
+        {
+            slow = slow!.next;
+            fast = fast!.next!.next;
+            if (slow == fast) return true;
+        }
+
+        return false;
+
     }
 
     public void RemoveLast()

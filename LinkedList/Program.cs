@@ -66,3 +66,14 @@ WriteLine($"list2.GetKthFromTheEnd(0): {list2.GetKthFromTheEnd(0)}");
 WriteLine($"list2.GetKthFromTheEnd(-1): {list2.GetKthFromTheEnd(-1)}");
 
 //WriteLine($"list2.GetKthFromTheEnd(100): {list2.GetKthFromTheEnd(100)}");
+
+WriteLine("Loop?");
+LinkedList list3 = new();
+list3.AddLast(10);
+list3.AddLast(20);
+list3.AddLast(30);
+list3.AddLast(40);
+list3.AddLast(50);
+list3.AddLast(60);
+list3.AddLoop();
+WriteLine(list3.HasLoop());
