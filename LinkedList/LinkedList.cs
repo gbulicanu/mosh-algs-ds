@@ -113,6 +113,25 @@ public class LinkedList
         return first != null ? first.value : throw new ArgumentException("Invalid argument passed", nameof(k));;
     }
 
+    public void PrintMiddle()
+    {
+        if (IsEmpty())
+            throw new InvalidOperationException("Sequence contains no elements");
+            
+        var first = this.first;
+        var second = this.first;
+        while (second != this.last && second?.next != last)
+        {
+            second = second!.next!.next;
+            first = first!.next;
+        }
+
+        if (second == this.last)
+            WriteLine(first!.value);
+        else
+            WriteLine(first!.value + ", " + first!.next!.value);
+    }
+
     public void RemoveLast()
     {
         // O(n)
