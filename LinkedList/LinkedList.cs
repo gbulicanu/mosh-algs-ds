@@ -94,6 +94,10 @@ public class LinkedList
     public int GetKthFromTheEnd(int k)
     {
         var distance = k - 1;
+
+        if (IsSingleNode() && distance > 0)
+            throw new ArgumentException("Invalid argument passed", nameof(k));
+            
         if (distance < 0)
             distance = 0;
 
