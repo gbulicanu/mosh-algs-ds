@@ -93,15 +93,6 @@ public class LinkedList
 
     public int GetKthFromTheEnd(int k)
     {
-        // Find the Kth node from the end
-        // of a linked list in one pass.
-        // [10, 20, 30, 40, 50]
-        //           *      *
-
-        // K = 1 (50)
-        // K = 2 (50)
-        // K = 3 (30) (distance = 2)
-
         var distance = k - 1;
         if (distance < 0)
             distance = 0;
