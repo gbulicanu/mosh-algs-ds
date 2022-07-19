@@ -91,6 +91,43 @@ public class LinkedList
         this.first = previous;
     }
 
+    public int GetKthFromTheEnd(int k)
+    {
+        // Find the Kth node from the end
+        // of a linked list in one pass.
+        // [10, 20, 30, 40, 50]
+        //           *      *
+
+        // K = 1 (50)
+        // K = 2 (50)
+        // K = 3 (30) (distance = 2)
+
+        var distance = k - 1;
+        if (distance < 0)
+            distance = 0;
+
+        var first = this.first;
+        var second = this.first;
+        var current = this.first;
+        while (current != null)
+        {
+            if (distance == 0) second = current;
+            else if(distance < 0)
+            {
+                first = first?.next;
+                second = second?.next;
+            }
+
+            if (second == this.last && first != null)
+                return first.value;
+
+            distance--;
+            current = current.next;
+        }
+
+        throw new ArgumentException("Invalid argument passed", nameof(k));
+    }
+
     public void RemoveLast()
     {
         // O(n)

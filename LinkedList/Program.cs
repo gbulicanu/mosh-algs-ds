@@ -48,3 +48,17 @@ WriteLine(list);
 list.Reverse();
 WriteLine($"Reversed: {list}");
 
+WriteLine("List2");
+LinkedList list2 = new();
+list2.AddLast(10);
+list2.AddLast(20);
+list2.AddLast(30);
+list2.AddLast(40);
+list2.AddLast(50);
+WriteLine(list2);
+WriteLine($"list2.GetKthFromTheEnd(3): {list2.GetKthFromTheEnd(3)}");
+WriteLine($"list2.GetKthFromTheEnd(2): {list2.GetKthFromTheEnd(2)}");
+WriteLine($"list2.GetKthFromTheEnd(1): {list2.GetKthFromTheEnd(1)}");
+WriteLine($"list2.GetKthFromTheEnd(0): {list2.GetKthFromTheEnd(0)}");
+WriteLine($"list2.GetKthFromTheEnd(-1): {list2.GetKthFromTheEnd(-1)}");
+//WriteLine($"list2.GetKthFromTheEnd(100): {list2.GetKthFromTheEnd(100)}");
