@@ -93,34 +93,24 @@ public class LinkedList
 
     public int GetKthFromTheEnd(int k)
     {
-        var distance = k - 1;
-
-        if (IsSingleNode() && distance > 0)
-            throw new ArgumentException("Invalid argument passed", nameof(k));
-            
-        if (distance < 0)
-            distance = 0;
+        if (IsEmpty())
+            throw new InvalidOperationException("Squence contains no elements");
 
         var first = this.first;
         var second = this.first;
-        var current = this.first;
-        while (current != null)
+        for (int i = 0; i < k - 1; i++)
         {
-            if (distance == 0) second = current;
-            else if(distance < 0)
-            {
-                first = first?.next;
-                second = second?.next;
-            }
-
-            if (second == this.last && first != null)
-                return first.value;
-
-            distance--;
-            current = current.next;
+            second = second?.next;
+            if (second == null)
+                throw new ArgumentException("Invalid argument passed", nameof(k));
+        }
+        while (second != this.last)
+        {
+            first = first?.next;
+            second = second?.next;
         }
 
-        throw new ArgumentException("Invalid argument passed", nameof(k));
+        return first != null ? first.value : throw new ArgumentException("Invalid argument passed", nameof(k));;
     }
 
     public void RemoveLast()
