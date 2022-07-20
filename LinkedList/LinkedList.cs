@@ -13,6 +13,8 @@ public class LinkedList
         }
     }
 
+    private const string EMPTY_SEQUENCE = "Squence contains no elements";
+    private const string IVALID_ARGUMENT = "Invalid argument passed";
     private Node? first;
     private Node? last;
 
@@ -59,7 +61,7 @@ public class LinkedList
         var second = this.first?.next;
 
         if (IsEmpty())
-            throw new InvalidOperationException("Sequence contains no elements");
+            throw new InvalidOperationException(EMPTY_SEQUENCE);
 
         if (IsSingleNode())
             this.first = this.last = null;
@@ -94,7 +96,7 @@ public class LinkedList
     public int GetKthFromTheEnd(int k)
     {
         if (IsEmpty())
-            throw new InvalidOperationException("Squence contains no elements");
+            throw new InvalidOperationException(EMPTY_SEQUENCE);
 
         var first = this.first;
         var second = this.first;
@@ -102,7 +104,7 @@ public class LinkedList
         {
             second = second?.next;
             if (second == null)
-                throw new ArgumentException("Invalid argument passed", nameof(k));
+                throw new ArgumentException(IVALID_ARGUMENT, nameof(k));
         }
         while (second != this.last)
         {
@@ -110,7 +112,9 @@ public class LinkedList
             second = second?.next;
         }
 
-        return first != null ? first.value : throw new ArgumentException("Invalid argument passed", nameof(k));;
+        return first != null
+            ? first.value
+            : throw new ArgumentException(IVALID_ARGUMENT, nameof(k));;
     }
 
     public void AddLoop()
@@ -120,8 +124,9 @@ public class LinkedList
 
     public void PrintMiddle()
     {
+        // O(n)
         if (IsEmpty())
-            throw new InvalidOperationException("Sequence contains no elements");
+            throw new InvalidOperationException(EMPTY_SEQUENCE);
 
         var first = this.first;
         var second = this.first;
@@ -139,6 +144,7 @@ public class LinkedList
 
     public bool HasLoop()
     {
+        // O(n)
         if(IsEmpty() || IsSingleNode())
             return false;
 
@@ -160,7 +166,7 @@ public class LinkedList
     {
         // O(n)
         if (IsEmpty())
-            throw new InvalidOperationException("Sequence contains no elements");
+            throw new InvalidOperationException(EMPTY_SEQUENCE);
 
         if (IsSingleNode())
             this.first = this.last = null;
@@ -224,7 +230,9 @@ public class LinkedList
 
     public override string ToString()
     {
-        return $"[{string.Join(" -> ",  this.ToArray().Select(i => i.ToString()).ToArray())}]";
+        return $"[{string.Join(
+            " -> ", 
+            this.ToArray().Select(i => i.ToString()).ToArray())}]";
     }
 
     private bool IsSingleNode()

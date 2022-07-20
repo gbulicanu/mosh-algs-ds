@@ -31,7 +31,9 @@ WriteLine(numbers.IndexOf(40));
 
 WriteLine($"Max: {numbers.Max()}");
 
-DynamicArray intersected = numbers.Intersect(DynamicArray.FromArray(new int[] { 10, 25, 20 }));
+DynamicArray intersected = numbers.Intersect(
+    DynamicArray.FromArray(new int[] { 10, 25, 20 }));
+    
 WriteLine($"Intersect with [10, 15, 20]:");
 intersected.Print();
 
