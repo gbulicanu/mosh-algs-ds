@@ -15,6 +15,7 @@ public class LinkedList
 
     private const string EMPTY_SEQUENCE = "Squence contains no elements";
     private const string IVALID_ARGUMENT = "Invalid argument passed";
+    
     private Node? first;
     private Node? last;
 
