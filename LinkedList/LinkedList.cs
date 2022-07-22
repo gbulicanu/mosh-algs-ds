@@ -231,9 +231,10 @@ public class LinkedList
 
     public override string ToString()
     {
-        return $"[{string.Join(
-            " -> ", 
-            this.ToArray().Select(i => i.ToString()).ToArray())}]";
+        string[] itemsRep = this.ToArray()
+            .Select(i => i.ToString())
+            .ToArray();
+        return $"[{string.Join(" -> ", itemsRep)}]";
     }
 
     private bool IsSingleNode()
