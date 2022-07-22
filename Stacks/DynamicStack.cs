@@ -48,8 +48,8 @@
     public int[] ToArray()
     {
         int[] result = new int[this.count];
-        for (int i = this.count - 1; i >= 0; i--)
-            result[i] = this.items[i];
+        Array.Copy(this.items, 0, result, 0, this.count);
+        Array.Reverse(result);
 
         return result;
     }
@@ -57,9 +57,10 @@
     public override string ToString()
     {
         string[] itemsRep = this.ToArray()
+            .Reverse()
             .Select(i => i.ToString())
             .ToArray();
 
-        return $"[{string.Join(" -> ", itemsRep)}>";
+        return $"[{string.Join(", ", itemsRep)}>";
     }
 }

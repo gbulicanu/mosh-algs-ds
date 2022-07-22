@@ -3,9 +3,16 @@ using static System.Console;
 
 //string input = "abcd";
 //Stack<char> stack = new(input);
+//DynamicStack dynStack = new();
+//dynStack.Push(1);
+//dynStack.Push(2);
+//dynStack.Push(3);
+//dynStack.Push(4);
 //string revereseOutput = StringReverser.Reverse(input);
 
 //WriteLine(stack.ToArray());
+//Array.ForEach(dynStack.ToArray(), i => Write(i));
+//WriteLine();
 //WriteLine(revereseOutput);
 
 //string input = "[1 + 1]";
