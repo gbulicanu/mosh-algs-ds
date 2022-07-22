@@ -8,7 +8,7 @@ using static System.Console;
 //WriteLine(stack.ToArray());
 //WriteLine(revereseOutput);
 
-string input = ")1+1(";
+string input = "[1 + 1]";
 
 bool isBalanced = BalancedExpressions.IsBalanced(input);
 WriteLine($"isBalanced('{input}'): {isBalanced}");

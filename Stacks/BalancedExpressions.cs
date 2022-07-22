@@ -1,7 +1,7 @@
 ﻿class BalancedExpressions
 {
-    const string openingBraces = "([<{";
-    const string closingBraces = ")]>}";
+    const string openingBrackets = "([<{";
+    const string closingBrackets = ")]>}";
 
     internal static bool IsBalanced(string input)
     {
@@ -13,20 +13,33 @@
         Stack<char> openingBraceStack = new();
         foreach (char c in input)
         {
-            if(closingBraces.Contains(c) && openingBraceStack.Count == 0)
-                return false;
+            if (IsLeftBracket(c))
+                openingBraceStack.Push(c);
 
-            if (openingBraces.Contains(c))
+            if (IsRightBracket(c))
             {
-                openingBraceStack.Push(c);                
+                if (openingBraceStack.Count == 0) return false;
+                char top = openingBraceStack.Pop();
+                if (!BracketsMatch(top, c)) return false;
             }
-
-            if (closingBraces.Contains(c)
-                && openingBraceStack.TryPop(out var lastOpenedBrace)
-                && openingBraces.IndexOf(lastOpenedBrace) != closingBraces.IndexOf(c))
-                return false;
         }
 
         return true;
+    }
+
+    static bool IsLeftBracket(char c)
+    {
+        return openingBrackets.Contains(c);
+    }
+
+    static bool IsRightBracket(char c)
+    {
+        return closingBrackets.Contains(c);
+    }
+
+    static bool BracketsMatch(char left, char right)
+    {
+        return openingBrackets.IndexOf(left) ==
+            closingBrackets.IndexOf(right);
     }
 }
