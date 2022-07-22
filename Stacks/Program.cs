@@ -1,12 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using static System.Console;
 
-var p = (string value) => WriteLine(value);
-var pb = (char[]? buffer) => WriteLine(buffer);
+//string input = "abcd";
+//Stack<char> stack = new(input);
+//string revereseOutput = StringReverser.Reverse(input);
 
-string input = "abcd";
-Stack<char> stack = new(input);
-string revereseOutput = StringReverser.Reverse(input);
+//WriteLine(stack.ToArray());
+//WriteLine(revereseOutput);
 
-pb(stack.ToArray());
-p(revereseOutput);
+string input = ")1+1(";
+
+bool isBalanced = BalancedExpressions.IsBalanced(input);
+WriteLine($"isBalanced('{input}'): {isBalanced}");
