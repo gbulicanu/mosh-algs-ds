@@ -28,7 +28,7 @@ Reverse(input);
 PrintQueue(input);
 
 // ArrayQueue implementation
-ArrayQueue arrayQueue = new ();
+StackQueue arrayQueue = new ();
 WriteLine(arrayQueue);
 WriteLine($"IsFull: {arrayQueue.IsFull()}");
 WriteLine($"IsEmpty: {arrayQueue.IsEmpty()}");
@@ -41,7 +41,8 @@ arrayQueue.Enqueue(20);
 arrayQueue.Enqueue(30);
 WriteLine(arrayQueue);
 
-WriteLine($"Peek: {arrayQueue.Peek()}");
+var topNow = arrayQueue.Peek();
+WriteLine($"Peek: {topNow}");
 WriteLine(arrayQueue);
 
 WriteLine($"Dequeue: {arrayQueue.Dequeue()}");
@@ -50,8 +51,9 @@ WriteLine($"Dequeue: {arrayQueue.Dequeue()}");
 WriteLine(arrayQueue);
 WriteLine($"Dequeue: {arrayQueue.Dequeue()}");
 WriteLine(arrayQueue);
-//WriteLine("Attempt dequeue empty:")
-//WriteLine(arrayQueue);
+// WriteLine("Attempt dequeue empty:");
+// _ = arrayQueue.Dequeue();
+// WriteLine(arrayQueue);
 arrayQueue.Enqueue(10);
 arrayQueue.Enqueue(20);
 arrayQueue.Enqueue(30);
@@ -64,4 +66,6 @@ arrayQueue.Enqueue(90);
 arrayQueue.Enqueue(100);
 // WriteLine("Attempt enqueue on full:");
 // arrayQueue.Enqueue(110);
+// var deq1 = arrayQueue.Dequeue();
+// var deq2 = arrayQueue.Dequeue();
 WriteLine(arrayQueue);
