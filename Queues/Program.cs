@@ -62,6 +62,6 @@ arrayQueue.Enqueue(70);
 arrayQueue.Enqueue(80);
 arrayQueue.Enqueue(90);
 arrayQueue.Enqueue(100);
-// WriteLine("Attempt enqueue on full:")
+// WriteLine("Attempt enqueue on full:");
 // arrayQueue.Enqueue(110);
 WriteLine(arrayQueue);

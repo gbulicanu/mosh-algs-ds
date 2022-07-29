@@ -5,6 +5,7 @@
     int[] items;
     int frontIndex;
     int rearIndex;
+    int count;
 
     public ArrayQueue(int capacity = 10)
     {
@@ -14,20 +15,22 @@
 
     public bool IsFull()
     {
-        return this.rearIndex == this.capacity;
+        return this.count == this.capacity;
     }
 
     public bool IsEmpty()
     {
-        return this.rearIndex == 0 && this.frontIndex == 0;
+        return count == 0;
     }
 
     public void Enqueue(int item)
     {
-        if (this.IsFull())
+        if (IsFull())
             throw new InvalidOperationException("Queue is full");
 
-        this.items[this.rearIndex++] = item;
+        this.items[this.rearIndex] = item;
+        this.rearIndex = (this.rearIndex + 1) % this.capacity;
+        count++;
     }
 
     public int Dequeue()
@@ -35,11 +38,11 @@
         if (this.IsEmpty())
             throw new InvalidOperationException("Queue is empty");
 
-        var result = this.items[this.frontIndex++];
-        if(this.frontIndex == this.rearIndex)
-            this.frontIndex = this.rearIndex = 0;
-
-        return result;
+        var item = this.items[this.frontIndex];
+        this.items[this.frontIndex] = 0;
+        this.frontIndex = (this.frontIndex + 1) % this.capacity;
+        this.count--;
+        return item;
     }
 
     public int Peek()
@@ -55,15 +58,10 @@
         if (IsEmpty())
             return "[]";
 
-        var queueArray = new int[this.Count];
-
-        Array.Copy(this.items, this.frontIndex, queueArray, 0, this.Count);
-        var queueArrayRep = queueArray
-            .Select(x => x.ToString())
+        var queueArrayRep = this.items.Select(x => x.ToString())
             .ToArray();
 
-        return $"[{string.Join(", ", queueArrayRep)}]";
+        return $"[{string.Join(", ", queueArrayRep)}][F:{this.frontIndex}, R:{this.rearIndex}]";
     }
 
-    public int Count { get { return this.rearIndex - this.frontIndex; } }
 }
