@@ -61,7 +61,8 @@
         var queueArrayRep = this.items.Select(x => x.ToString())
             .ToArray();
 
-        return $"[{string.Join(", ", queueArrayRep)}][F:{this.frontIndex}, R:{this.rearIndex}]";
+        return $"[{string.Join(", ", queueArrayRep)}]" +
+            $"[F:{this.frontIndex}, R:{this.rearIndex}]";
     }
 
 }
