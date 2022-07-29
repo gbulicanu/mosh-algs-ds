@@ -2,12 +2,11 @@
 
 static void Reverse(Queue<int> input)
 {
-    Stack<int> stack = new (input);
-    input.Clear();
-    while (stack.TryPop(out var value))
-    {
-        input.Enqueue(value);
-    }
+    Stack<int> stack = new ();
+    while (input.Count > 0)
+        stack.Push(input.Dequeue());
+    while (stack.Count > 0)
+        input.Enqueue(stack.Pop());
 }
 
 static void PrintQueue(Queue<int> input)
