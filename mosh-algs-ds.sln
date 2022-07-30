@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stacks", "Stacks\Stacks.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queues", "Queues\Queues.csproj", "{19181356-269F-422B-B7A5-A6FBF2EB3A6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTables", "HashTables\HashTables.csproj", "{AAF028DC-7E4B-4E46-B128-5527F2211088}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{19181356-269F-422B-B7A5-A6FBF2EB3A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19181356-269F-422B-B7A5-A6FBF2EB3A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19181356-269F-422B-B7A5-A6FBF2EB3A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF028DC-7E4B-4E46-B128-5527F2211088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF028DC-7E4B-4E46-B128-5527F2211088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF028DC-7E4B-4E46-B128-5527F2211088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF028DC-7E4B-4E46-B128-5527F2211088}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
