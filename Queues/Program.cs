@@ -27,7 +27,7 @@ Reverse(input);
 
 PrintQueue(input);
 
-// ArrayQueue implementation
+// StackQueue implementation
 StackQueue arrayQueue = new ();
 WriteLine(arrayQueue);
 WriteLine($"IsFull: {arrayQueue.IsFull()}");
@@ -69,3 +69,37 @@ arrayQueue.Enqueue(100);
 // var deq1 = arrayQueue.Dequeue();
 // var deq2 = arrayQueue.Dequeue();
 WriteLine(arrayQueue);
+
+// PriorityQueue
+WriteLine("");
+WriteLine("PriorityQueue");
+WriteLine("=============");
+PriorityQueue priorityQueue = new ();
+priorityQueue.Enqueue(10);
+priorityQueue.Enqueue(30);
+priorityQueue.Enqueue(50);
+priorityQueue.Enqueue(70);
+priorityQueue.Enqueue(20);
+// Attempt to Enqueue on full queue.
+// priorityQueue.Enqueue(70);
+// priorityQueue.Enqueue(70);
+// priorityQueue.Enqueue(70);
+// priorityQueue.Enqueue(70);
+// priorityQueue.Enqueue(70);
+// priorityQueue.Enqueue(70);
+WriteLine(priorityQueue);
+_ = priorityQueue.Dequeue();
+priorityQueue.Enqueue(60);
+WriteLine(priorityQueue);
+_ = priorityQueue.Dequeue();
+WriteLine(priorityQueue);
+_ = priorityQueue.Dequeue();
+WriteLine(priorityQueue);
+_ = priorityQueue.Dequeue();
+WriteLine(priorityQueue);
+_ = priorityQueue.Dequeue();
+WriteLine(priorityQueue);
+_ = priorityQueue.Dequeue();
+WriteLine(priorityQueue);
+// Attempt to Peek on empty queue
+// _ = priorityQueue.Peek();
