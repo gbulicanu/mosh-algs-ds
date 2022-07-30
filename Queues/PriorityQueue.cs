@@ -26,18 +26,8 @@
         if (IsFull())
             throw new InvalidOperationException("Queue is full");
 
-        if (IsEmpty())
-            this.items[0] = item;
-
-        for (int i = count - 1; i >= 0; i--)
-            if (this.items[i] > item)
-                this.items[i + 1] = items[i];
-            else
-            {
-                this.items[i + 1] = item;
-                break;
-            }
-
+        var i = ShiftItemsToInsert(item);
+        this.items[i] = item;
         count++;
     }
 
@@ -47,11 +37,8 @@
             throw new InvalidOperationException("Queue is empty");
 
         var item = this.items[0];
-        
-        for (int i = 1; i < count; i++)
-            this.items[i - 1] = this.items[i];
+        ShiftItems();
 
-        this.items[--this.count] = 0;
         return item;
     }
 
@@ -73,5 +60,25 @@
             .ToArray();
 
         return $"[{string.Join(", ", queueArrayRep)}]";
+    }
+
+    int ShiftItemsToInsert(int item)
+    {
+        int i;
+        for (i = count - 1; i >= 0; i--)
+            if (this.items[i] > item)
+                this.items[i + 1] = items[i];
+            else
+                break;
+
+        return i + 1;
+    }
+
+    void ShiftItems()
+    {
+        for (int i = 1; i < count; i++)
+            this.items[i - 1] = this.items[i];
+
+        this.items[--this.count] = 0;
     }
 }
