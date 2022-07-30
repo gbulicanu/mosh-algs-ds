@@ -39,10 +39,10 @@ int FindFirstRepeatingIn(string input)
     for (int i = 0; i < input.Length; i++)
     {
         char c = input[i];
-        int currentCount = charsSet.Count;
-        charsSet.Add(c);
-        if (currentCount == charsSet.Count)
+        if (charsSet.Contains(c))
             return i;
+        
+        charsSet.Add(c);
     }
 
     return -1;
