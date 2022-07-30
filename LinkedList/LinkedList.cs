@@ -1,5 +1,3 @@
-using static System.Console;
-
 public class LinkedList
 {
     private class Node

@@ -1,0 +1,6 @@
+<Project>
+    <ItemGroup>
+        <Using Include="System.Text" />
+        <Using Include="System.Console" Static="True" />
+    </ItemGroup>
+</Project>

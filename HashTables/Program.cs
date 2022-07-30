@@ -1,6 +1,4 @@
-﻿using static System.Console;
-
-// Find first non repeated character
+﻿// Find first non repeated character
 // ex, 'a green apple' => 'g'
 
 string input = "a green apple";

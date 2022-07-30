@@ -1,7 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using static System.Console;
-
-//string input = "abcd";
+﻿//string input = "abcd";
 //Stack<char> stack = new(input);
 //DynamicStack dynStack = new();
 //dynStack.Push(1);

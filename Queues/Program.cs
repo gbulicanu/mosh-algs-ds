@@ -1,6 +1,4 @@
-﻿using static System.Console;
-
-static void Reverse(Queue<int> input)
+﻿static void Reverse(Queue<int> input)
 {
     Stack<int> stack = new ();
     while (input.Count > 0)

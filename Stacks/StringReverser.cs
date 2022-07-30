@@ -1,7 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Text;
-
-class StringReverser
+﻿class StringReverser
 {
     internal static string Reverse(string input)
     {
