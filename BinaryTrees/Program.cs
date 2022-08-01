@@ -35,3 +35,7 @@ bst.TraverseInOrder();
 WriteLine("Depth First - PostOrder:");
 bst.TraversePostOrder();
 
+WriteLine($"Height: {bst.Height()}");
+WriteLine($"Min: {bst.Min()}");
+WriteLine($"MinFast: {bst.MinFast()}");
+

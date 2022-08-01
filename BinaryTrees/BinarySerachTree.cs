@@ -40,6 +40,31 @@
     {
         TraversePostOrder(rootNode);
     }
+    public int Height()
+    {
+        return Height(rootNode);
+    }
+
+    public int Min()
+    {
+        return Min(rootNode);
+    }
+
+    public int MinFast()
+    {
+        if (this.rootNode == null)
+            throw new InvalidOperationException("Tree is empty");
+
+        Node? current = this.rootNode;
+        Node? last = current;
+        while (current != null)
+        {
+            last = current;
+            current = current.Left;
+        }
+
+        return last.Value;
+    }
 
     private void TraversePreOrder(Node? rootNode)
     {
@@ -70,6 +95,38 @@
         TraversePostOrder(rootNode.Right);
         WriteLine(rootNode.Value);
     }
+
+    // O(log n)
+    private int Height(Node? rootNode)
+    {
+        if (rootNode == null)
+            return -1;
+
+        if (IsLeaf(rootNode))
+            return 0;
+
+        return 1 + Math.Max(
+            Height(rootNode.Left),
+            Height(rootNode.Right));
+    }
+
+    // O(n)
+    private int Min(Node? node)
+    {
+        if (node == null)
+            return this.rootNode?.Value ?? -1;
+
+        if (IsLeaf(node))
+            return node.Value;
+
+        int left = Min(node.Left);
+        int right = Min(node.Right);
+
+        return Math.Min(Math.Min(left, right), node.Value);
+    }
+
+    private static bool IsLeaf(Node node) =>
+        node == null || (node.Left == null && node.Right == null);
 
     private Node? FindNodeWith(int value, bool toInsert = false)
     {
@@ -108,7 +165,11 @@
         public Node? Right;
         public Node? Parent;
 
-        public Node(int value, Node? left = null, Node? right = null, Node? parent = null)
+        public Node(
+            int value,
+            Node? left = null,
+            Node? right = null,
+            Node? parent = null)
         {
             this.Value = value;
             this.Left = left;
