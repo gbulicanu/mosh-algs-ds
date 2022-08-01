@@ -10,44 +10,50 @@
             return;
         }
 
-        Node? currentNode = rootNode;
-        while (currentNode != null)
+        Node? nodeToInsert = FindNodeWith(value, true);
+        if (nodeToInsert != null)
         {
-            Node currentParent = currentNode;
-            if (value < currentNode.Value)
-            {
-                currentNode = currentNode.Left;
-                if (currentNode == null)
-                    currentParent.Left = new Node(value, parent: currentParent);
-            }
+            if (value < nodeToInsert.Value)
+                nodeToInsert.Left = new Node(value, parent: nodeToInsert);
             else
-            {
-                currentNode = currentNode.Right;
-                if (currentNode == null)
-                    currentParent.Right = new Node(value, parent: currentParent);
-            }
+                nodeToInsert.Right = new Node(value, parent: nodeToInsert);
+
         }
     }
 
     public bool Find(int value)
     {
-        if (rootNode == null)
-            return false;
+        return FindNodeWith(value) != null;
+    }
 
-
-        Node? currentNode = rootNode;
-        while (currentNode != null)
+    private Node? FindNodeWith(int value, bool toInsert = false)
+    {
+        if (rootNode != null)
         {
-            if (currentNode.Value == value)
-                return true;
+            Node? currentNode = rootNode;
+            while (currentNode != null)
+            {
+                Node currentParent = currentNode;
 
-            if (value < currentNode.Value)
-                currentNode = currentNode.Left;
-            else
-                currentNode = currentNode.Right;
+                if (currentNode.Value == value && !toInsert)
+                    return currentNode;
+
+                if (value < currentNode.Value)
+                {
+                    currentNode = currentNode.Left;
+                    if (currentNode == null && toInsert)
+                        return currentParent;
+                }
+                else
+                {
+                    currentNode = currentNode.Right;
+                    if (currentNode == null && toInsert)
+                        return currentParent;
+                }
+            }
         }
 
-        return false;
+        return null;
     }
 
     private class Node
