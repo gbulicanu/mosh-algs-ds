@@ -66,6 +66,27 @@
         return last.Value;
     }
 
+    public bool Equals(BinarySerachTree other) 
+    {
+        if (other == null)
+            return false;
+
+        return Equals(this.rootNode, other.rootNode);
+    }
+
+    private bool Equals(Node? self, Node? other)
+    {
+        if (self == null && IsLeaf(other))
+            return true;
+
+        if (self != null && other != null)
+            return self.Value == other.Value
+                && Equals(self.Left, other.Left)
+                && Equals(self.Right, other.Right);
+
+        return false;
+    }
+
     private void TraversePreOrder(Node? rootNode)
     {
         if (rootNode == null)
@@ -125,7 +146,7 @@
         return Math.Min(Math.Min(left, right), node.Value);
     }
 
-    private static bool IsLeaf(Node node) =>
+    private static bool IsLeaf(Node? node) =>
         node == null || (node.Left == null && node.Right == null);
 
     private Node? FindNodeWith(int value, bool toInsert = false)
