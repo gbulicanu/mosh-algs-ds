@@ -5,6 +5,8 @@ string input = "a green apple";
 string inputRepeated = "green apple";
 
 int notRepeatedIndex = FindFirstNotRepeatingIn(input);
+WriteLine("Find first repeating/non-repeating character");
+WriteLine("============================================");
 WriteLine($"First no repeating character in '{input}' is" +
     $" '{input[notRepeatedIndex]}' found at index {notRepeatedIndex}.");
 
@@ -45,3 +47,18 @@ int FindFirstRepeatingIn(string input)
 
     return -1;
 }
+
+WriteLine();
+WriteLine("HashTable");
+WriteLine("=========");
+HashTable hashTable = new();
+hashTable.Add(10, "Ten");
+hashTable.Add(20, "Twenty");
+hashTable.Add(30, "Thirty");
+hashTable.Add(40, "Fourty");
+hashTable.Add(110, "One hundred and ten");
+hashTable.Add(111, "One hundred and eleven");
+WriteLine(hashTable);
+WriteLine(hashTable.Get(10));
+WriteLine(hashTable.Get(30));
+WriteLine(hashTable.Get(110));
