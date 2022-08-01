@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{EB61F22D
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTrees", "BinaryTrees\BinaryTrees.csproj", "{4042950F-FBE3-40A5-AB92-440D526B3663}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{AAF028DC-7E4B-4E46-B128-5527F2211088}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAF028DC-7E4B-4E46-B128-5527F2211088}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAF028DC-7E4B-4E46-B128-5527F2211088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4042950F-FBE3-40A5-AB92-440D526B3663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4042950F-FBE3-40A5-AB92-440D526B3663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4042950F-FBE3-40A5-AB92-440D526B3663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4042950F-FBE3-40A5-AB92-440D526B3663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
