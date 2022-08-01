@@ -28,3 +28,10 @@ WriteLine($"Find(2): {bst.Find(2)}");
 WriteLine($"Find(3): {bst.Find(3)}");
 WriteLine($"Find(17): {bst.Find(17)}");
 
+WriteLine("Depth First - TraversePreOrder:");
+bst.TraversePreOrder();
+WriteLine("Depth First - TraverseInOrder:");
+bst.TraverseInOrder();
+WriteLine("Depth First - PostOrder:");
+bst.TraversePostOrder();
+

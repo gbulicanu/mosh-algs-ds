@@ -26,6 +26,51 @@
         return FindNodeWith(value) != null;
     }
 
+    public void TraversePreOrder()
+    {
+        TraversePreOrder(rootNode);
+    }
+
+    public void TraverseInOrder()
+    {
+        TraverseInOrder(rootNode);
+    }
+
+    public void TraversePostOrder()
+    {
+        TraversePostOrder(rootNode);
+    }
+
+    private void TraversePreOrder(Node? rootNode)
+    {
+        if (rootNode == null)
+            return;
+
+        WriteLine(rootNode.Value);
+        TraversePreOrder(rootNode.Left);
+        TraversePreOrder(rootNode.Right);
+    }
+
+    private void TraverseInOrder(Node? rootNode)
+    {
+        if (rootNode == null)
+            return;
+
+        TraverseInOrder(rootNode.Left);
+        WriteLine(rootNode.Value);
+        TraverseInOrder(rootNode.Right);
+    }
+
+    private void TraversePostOrder(Node? rootNode)
+    {
+        if (rootNode == null)
+            return;
+
+        TraversePostOrder(rootNode.Left);
+        TraversePostOrder(rootNode.Right);
+        WriteLine(rootNode.Value);
+    }
+
     private Node? FindNodeWith(int value, bool toInsert = false)
     {
         if (rootNode != null)
