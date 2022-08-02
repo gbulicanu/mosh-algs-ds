@@ -23,6 +23,8 @@ bst.Insert(18);
 WriteLine("Insert(17)");
 bst.Insert(17);
 
+// bst.Disorder();
+WriteLine($"IsValid(bst): {bst.IsValid()}");
 
 BinarySerachTree bst2 = new();
 
@@ -62,4 +64,3 @@ bst.TraversePostOrder();
 WriteLine($"Height: {bst.Height()}");
 WriteLine($"Min: {bst.Min()}");
 WriteLine($"MinFast: {bst.MinFast()}");
-

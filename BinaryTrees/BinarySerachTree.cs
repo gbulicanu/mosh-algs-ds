@@ -66,12 +66,24 @@
         return last.Value;
     }
 
+    public bool IsValid()
+    {
+        return IsValid(this.rootNode, int.MinValue, int.MaxValue);
+    }
+
     public bool Equals(BinarySerachTree other) 
     {
         if (other == null)
             return false;
 
         return Equals(this.rootNode, other.rootNode);
+    }
+
+    public void Disorder()
+    {
+        Node? temp = this.rootNode?.Left;
+        this.rootNode!.Left = this.rootNode?.Right;
+        this.rootNode!.Right = temp;
     }
 
     private bool Equals(Node? self, Node? other)
@@ -85,6 +97,18 @@
                 && Equals(self.Right, other.Right);
 
         return false;
+    }
+
+    private bool IsValid(Node? node, int min, int max)
+    {
+        if (node == null)
+            return true;
+
+        if (node.Value < min || node.Value > max)
+            return false;
+
+        return IsValid(node.Left, min, node.Value - 1)
+            && IsValid(node.Right, node.Value + 1, max);
     }
 
     private void TraversePreOrder(Node? rootNode)
