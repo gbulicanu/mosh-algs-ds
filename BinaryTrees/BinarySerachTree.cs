@@ -28,6 +28,19 @@
         return FindNodeWith(value) != null;
     }
 
+    public void TraverseLevelOrder()
+    {
+        for (int i = 0; i <= Height(); i++)
+        {
+            List<int?> list = GetNodesAt(i);
+            foreach (var item in list)
+            {
+                if(item.HasValue)
+                    WriteLine(item.Value);
+            }
+        }
+    }
+
     public void TraversePreOrder()
     {
         TraversePreOrder(rootNode);
@@ -88,9 +101,11 @@
         this.rootNode!.Right = temp;
     }
 
-    public void PrintNodesAt(int distance)
+    public List<int?> GetNodesAt(int distance)
     {
-        PrintNodesAt(this.rootNode, distance);
+        List<int?> list = new List<int?>();
+        GetNodesAt(this.rootNode, distance, list);
+        return list;
     }
 
     private bool Equals(Node? self, Node? other)
@@ -118,16 +133,16 @@
             && IsValid(node.Right, node.Value + 1, max);
     }
 
-    private void PrintNodesAt(Node? node, int distance)
+    private void GetNodesAt(Node? node, int distance, List<int?> list)
     {
         if (node == null)
             return;
 
         if (distance == 0)
-            WriteLine(node?.Value);
+            list.Add(node?.Value);
 
-        PrintNodesAt(node?.Left, distance - 1);
-        PrintNodesAt(node?.Right, distance - 1);
+        GetNodesAt(node?.Left, distance - 1, list);
+        GetNodesAt(node?.Right, distance - 1, list);
 
     }
 

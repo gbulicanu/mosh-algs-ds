@@ -68,13 +68,30 @@ WriteLine($"MinFast: {bst.MinFast()}");
 WriteLine();
 WriteLine("Nodes at K distance");
 WriteLine("===================");
-WriteLine("bst.PrintNodesAt(0)");
-bst.PrintNodesAt(0);
-WriteLine("bst.PrintNodesAt(1)");
-bst.PrintNodesAt(1);
-WriteLine("BinarySerachTree.Empty.PrintNodesAt(0)");
-BinarySerachTree.Empty.PrintNodesAt(0);
-WriteLine("bst.PrintNodesAt(3)");
-bst.PrintNodesAt(3);
-WriteLine("bst.PrintNodesAt(30)");
-bst.PrintNodesAt(30);
+
+var getNodesAtAndPrint = (BinarySerachTree tree, int distance) =>
+{
+    var list = tree.GetNodesAt(distance);
+    foreach (var item in list)
+        WriteLine(item ?? -1);
+};
+
+WriteLine("getNodesAtAndPrint(bst, 0)");
+getNodesAtAndPrint(bst, 0);
+
+WriteLine("getNodesAtAndPrint(bst, 1)");
+getNodesAtAndPrint(bst, 1);
+
+WriteLine("getNodesAtAndPrint(BinarySerachTree.Empty, 0)");
+getNodesAtAndPrint(BinarySerachTree.Empty, 0);
+
+WriteLine("getNodesAtAndPrint(bst, 3)");
+getNodesAtAndPrint(bst, 3);
+
+WriteLine("getNodesAtAndPrint(bst, 3)");
+getNodesAtAndPrint(bst, 30);
+
+WriteLine();
+WriteLine("Traverse Level Order");
+WriteLine("=====================");
+bst.TraverseLevelOrder();
