@@ -90,10 +90,7 @@
 
     public void PrintNodesAt(int distance)
     {
-        if (distance == 0)
-            WriteLine(this.rootNode?.Value);
-
-        PrintNodesAt(this.rootNode, distance, 0);
+        PrintNodesAt(this.rootNode, distance);
     }
 
     private bool Equals(Node? self, Node? other)
@@ -121,17 +118,16 @@
             && IsValid(node.Right, node.Value + 1, max);
     }
 
-    private void PrintNodesAt(Node? node, int distance, int currentDistance)
+    private void PrintNodesAt(Node? node, int distance)
     {
         if (node == null)
             return;
 
-        if (currentDistance == distance)
+        if (distance == 0)
             WriteLine(node?.Value);
 
-        currentDistance++;
-        PrintNodesAt(node?.Left, distance, currentDistance);
-        PrintNodesAt(node?.Right, distance, currentDistance);
+        PrintNodesAt(node?.Left, distance - 1);
+        PrintNodesAt(node?.Right, distance - 1);
 
     }
 
