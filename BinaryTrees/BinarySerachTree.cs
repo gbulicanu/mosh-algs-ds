@@ -2,6 +2,8 @@
 {
     Node? rootNode;
 
+    public static BinarySerachTree Empty => new();
+
     public void Insert(int value)
     {
         if (rootNode == null)
@@ -86,6 +88,14 @@
         this.rootNode!.Right = temp;
     }
 
+    public void PrintNodesAt(int distance)
+    {
+        if (distance == 0)
+            WriteLine(this.rootNode?.Value);
+
+        PrintNodesAt(this.rootNode, distance, 0);
+    }
+
     private bool Equals(Node? self, Node? other)
     {
         if (self == null && IsLeaf(other))
@@ -109,6 +119,20 @@
 
         return IsValid(node.Left, min, node.Value - 1)
             && IsValid(node.Right, node.Value + 1, max);
+    }
+
+    private void PrintNodesAt(Node? node, int distance, int currentDistance)
+    {
+        if (node == null)
+            return;
+
+        if (currentDistance == distance)
+            WriteLine(node?.Value);
+
+        currentDistance++;
+        PrintNodesAt(node?.Left, distance, currentDistance);
+        PrintNodesAt(node?.Right, distance, currentDistance);
+
     }
 
     private void TraversePreOrder(Node? rootNode)

@@ -64,3 +64,13 @@ bst.TraversePostOrder();
 WriteLine($"Height: {bst.Height()}");
 WriteLine($"Min: {bst.Min()}");
 WriteLine($"MinFast: {bst.MinFast()}");
+
+WriteLine();
+WriteLine("Nodes at K distance");
+WriteLine("===================");
+WriteLine("bst.PrintNodesAt(0)");
+bst.PrintNodesAt(0);
+WriteLine("BinarySerachTree.Empty.PrintNodesAt(0)");
+BinarySerachTree.Empty.PrintNodesAt(0);
+WriteLine("bst.PrintNodesAt(3)");
+bst.PrintNodesAt(3);
