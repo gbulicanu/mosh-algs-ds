@@ -40,9 +40,9 @@ bst2.Insert(17);
 
 BinarySerachTree bst3 = new();
 
-bst2.Insert(9);
-bst2.Insert(4);
-bst2.Insert(14);
+bst3.Insert(9);
+bst3.Insert(4);
+bst3.Insert(14);
 
 bool equal = bst.Equals(bst2);
 WriteLine($"Equals(bst2): {equal}");
@@ -95,3 +95,21 @@ WriteLine();
 WriteLine("Traverse Level Order");
 WriteLine("=====================");
 bst.TraverseLevelOrder();
+
+
+WriteLine();
+WriteLine("AVL Tree");
+WriteLine("========");
+AVLTree avl = new();
+
+avl.Insert(10);
+avl.Insert(5);
+avl.Insert(15);
+avl.Insert(6);
+avl.Insert(1);
+avl.Insert(8);
+avl.Insert(12);
+avl.Insert(18);
+avl.Insert(17);
+
+WriteLine(avl);

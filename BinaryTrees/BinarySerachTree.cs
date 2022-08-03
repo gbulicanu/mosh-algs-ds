@@ -103,7 +103,7 @@
 
     public List<int?> GetNodesAt(int distance)
     {
-        List<int?> list = new List<int?>();
+        List<int?> list = new();
         GetNodesAt(this.rootNode, distance, list);
         return list;
     }
@@ -255,6 +255,11 @@
             this.Left = left;
             this.Right = right;
             this.Parent = parent;
+        }
+
+        public override string ToString()
+        {
+            return $"{Left?.Value}<-({Value})->{Right?.Value}";
         }
     }
 }
