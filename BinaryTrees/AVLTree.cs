@@ -10,11 +10,6 @@
 
     private AVLNode Insert(AVLNode? node, int value)
     {
-        int getHeight(AVLNode? node)
-        {
-            return (node == null) ? -1 : node.Height;
-        };
-
         if(node == null)
             return new AVLNode(value);
 
@@ -24,19 +19,39 @@
             node.Right = Insert(node.Right, value);
 
         node.Height = Math.Max(
-            getHeight(node.Left),
-            getHeight(node.Right)) + 1;
+            GetHeight(node.Left),
+            GetHeight(node.Right)) + 1;
 
         // balanceFactor = hight(L) - heght(R)
         // > 1 => left heavy
         // < -1 => right heavy
-        int balanceFactor = getHeight(node.Left) - getHeight(node.Right);
-        if (balanceFactor > 1)
-            WriteLine($"{node.Value} - LH");
-        else if (balanceFactor < -1)
-            WriteLine($"{node.Value} - RH");
+        int balanceFactor = GetBalanceFactor(node);
+        if (IsLeftHeavy(node))
+            WriteLine($"{node.Value} is left heavy");
+        else if (IsRightHeavy(node))
+            WriteLine($"{node.Value} is right heavy");
 
         return node;
+    }
+
+    private bool IsLeftHeavy(AVLNode? node)
+    {
+        return GetBalanceFactor(node) > 1;
+    }
+
+    private bool IsRightHeavy(AVLNode? node)
+    {
+        return GetBalanceFactor(node) < -1;
+    }
+
+    private int GetBalanceFactor(AVLNode? node)
+    {
+        return (node == null) ? 0 : GetHeight(node.Left) - GetHeight(node.Right);
+    }
+
+    private int GetHeight(AVLNode? node)
+    {
+        return (node == null) ? -1 : node.Height;
     }
 
     private class AVLNode
