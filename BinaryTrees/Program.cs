@@ -100,6 +100,8 @@ bst.TraverseLevelOrder();
 WriteLine();
 WriteLine("AVL Tree");
 WriteLine("========");
+
+WriteLine("avl:");
 AVLTree avl = new();
 
 avl.Insert(10);
@@ -112,4 +114,14 @@ avl.Insert(12);
 avl.Insert(18);
 avl.Insert(17);
 
-WriteLine(avl);
+WriteLine("avl2:");
+AVLTree avl2 = new();
+avl2.Insert(10);
+avl2.Insert(20);
+avl2.Insert(30);
+
+WriteLine("avl3:");
+AVLTree avl3 = new();
+avl3.Insert(30);
+avl3.Insert(20);
+avl3.Insert(10);

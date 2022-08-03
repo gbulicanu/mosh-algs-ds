@@ -33,7 +33,7 @@
         int balanceFactor = getHeight(node.Left) - getHeight(node.Right);
         if (balanceFactor > 1)
             WriteLine($"{node.Value} - LH");
-        if (balanceFactor < -1)
+        else if (balanceFactor < -1)
             WriteLine($"{node.Value} - RH");
 
         return node;
