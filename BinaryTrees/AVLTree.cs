@@ -22,9 +22,6 @@
             GetHeight(node.Left),
             GetHeight(node.Right)) + 1;
 
-        // balanceFactor = hight(L) - heght(R)
-        // > 1 => left heavy
-        // < -1 => right heavy
         int balanceFactor = GetBalanceFactor(node);
         if (IsLeftHeavy(node))
             WriteLine($"{node.Value} is left heavy");
