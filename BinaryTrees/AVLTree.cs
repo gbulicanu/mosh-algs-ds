@@ -10,7 +10,7 @@
 
     private AVLNode Insert(AVLNode? node, int value)
     {
-        if(node == null)
+        if (node == null)
             return new AVLNode(value);
 
         if (value < node.Value)
@@ -18,17 +18,58 @@
         else
             node.Right = Insert(node.Right, value);
 
+        UpdateHeight(node);
+
+        return Balance(node!);
+    }
+
+    private AVLNode Balance(AVLNode node)
+    {
+        if (IsLeftHeavy(node))
+        {
+            if (GetBalanceFactor(node.Left) < 0)
+                node.Left = LeftRotate(node.Left!);
+            return RightRotate(node);
+        }
+        else if (IsRightHeavy(node))
+        {
+            if (GetBalanceFactor(node.Right) > 0)
+                node.Right = RightRotate(node.Right!);
+            return LeftRotate(node);
+        }
+
+        return node;
+    }
+
+    private AVLNode LeftRotate(AVLNode root)
+    {
+        AVLNode newRoot = root.Right!;
+        root.Right = newRoot?.Left;
+        newRoot!.Left = root;
+
+        UpdateHeight(root);
+        UpdateHeight(newRoot);
+        
+        return newRoot;
+    }
+
+    private AVLNode RightRotate(AVLNode root)
+    {
+        AVLNode newRoot = root.Left!;
+        root.Left = newRoot?.Right;
+        newRoot!.Right = root;
+
+        UpdateHeight(root);
+        UpdateHeight(newRoot);
+
+        return newRoot;
+    }
+
+    private void UpdateHeight(AVLNode node) 
+    {
         node.Height = Math.Max(
             GetHeight(node.Left),
             GetHeight(node.Right)) + 1;
-
-        int balanceFactor = GetBalanceFactor(node);
-        if (IsLeftHeavy(node))
-            WriteLine($"{node.Value} is left heavy");
-        else if (IsRightHeavy(node))
-            WriteLine($"{node.Value} is right heavy");
-
-        return node;
     }
 
     private bool IsLeftHeavy(AVLNode? node)
@@ -43,7 +84,9 @@
 
     private int GetBalanceFactor(AVLNode? node)
     {
-        return (node == null) ? 0 : GetHeight(node.Left) - GetHeight(node.Right);
+        return (node == null)
+            ? 0
+            : GetHeight(node.Left) - GetHeight(node.Right);
     }
 
     private int GetHeight(AVLNode? node)

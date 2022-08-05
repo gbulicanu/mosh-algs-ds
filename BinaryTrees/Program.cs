@@ -122,6 +122,8 @@ avl2.Insert(30);
 
 WriteLine("avl3:");
 AVLTree avl3 = new();
+avl3.Insert(10);
 avl3.Insert(30);
 avl3.Insert(20);
-avl3.Insert(10);
+
+Console.ReadKey(true);
