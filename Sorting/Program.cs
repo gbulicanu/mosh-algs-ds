@@ -58,16 +58,14 @@ static void InsertionSort(int[]? array)
     for (int i = 1; i < array.Length; i++)
     {
         int current = array[i];
-        int insertIndex = 0;
+        int j = i - 1;
 
-        for (int j = i - 1; j >= 0; j--)
-            if (current < array[j])
-            {
-                array[j + 1] = array[j];
-                insertIndex = j;
-            }
-        
-        array[insertIndex] = current;
+        while (j >= 0 && array[j] > current)
+        {
+            array[j + 1] = array[j];
+            j--;
+        }
+        array[j + 1] = current;
     }
 }
 
