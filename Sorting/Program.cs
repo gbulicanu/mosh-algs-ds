@@ -14,10 +14,15 @@ static void BubbleSort(int[]? array)
 	{
 		for (int i = 0; i < array.Length - 1; i++)
 		{
-			if (array[i] > array[i + 1])
-				(array[i], array[i + 1]) = (array[i + 1], array[i]);
+			Swap(array, i, i + 1);
 		}
 		pass++;
+	}
+
+	static void Swap(int[] array, int index1, int index2)
+	{
+        if (array[index1] > array[index2])
+			(array[index1], array[index2]) = (array[index2], array[index1]);
 	}
 }
 
