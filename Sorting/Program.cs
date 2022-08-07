@@ -29,7 +29,7 @@ static void SelectionSort(int[]? array)
     if (array == null)
         return;
 
-	for (int i = 0; i < array.Length; i++)
+	for (int i = 0; i < array.Length - 1; i++)
 	{
 		int minIndex = i;
 		for (int j = i; j < array.Length; j++)
