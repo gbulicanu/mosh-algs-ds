@@ -6,24 +6,24 @@ static void BubbleSort(int[]? array)
 {
 	if (array == null)
 		return;
+    
+	bool isSorted = true;
 
-	int passesRequired = array.Length / 2 + 1;
-
-	int pass = 0;
-	while (pass < passesRequired)
+	for (int i = 0; i < array.Length; i++)
 	{
-		for (int i = 0; i < array.Length - 1; i++)
-		{
-			Swap(array, i, i + 1);
-		}
-		pass++;
+		for (int j = 1; j < array.Length - i; j++)
+			if (array[j] < array[j - 1])
+			{
+				Swap(array, j, j - 1);
+				isSorted = false;
+			}
+
+		if (isSorted)
+			return;
 	}
 
 	static void Swap(int[] array, int index1, int index2)
-	{
-        if (array[index1] > array[index2])
-			(array[index1], array[index2]) = (array[index2], array[index1]);
-	}
+		=> (array[index1], array[index2]) = (array[index2], array[index1]);
 }
 
 int[] array1 = { 8, 2, 4, 1, 3 };
