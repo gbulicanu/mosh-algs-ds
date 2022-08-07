@@ -31,15 +31,22 @@ static void SelectionSort(int[]? array)
 
 	for (int i = 0; i < array.Length - 1; i++)
 	{
-		int minIndex = i;
-		for (int j = i; j < array.Length; j++)
-		{
-			if (array[j] >= array[minIndex])
-				continue;
-
-			minIndex = j;
-		}
+		int minIndex = FindMinIndexInUnsortedPart(array, i);
 		Swap(array, minIndex, i);
+	}
+
+    static int FindMinIndexInUnsortedPart(int[] array, int i)
+    {
+        int minIndex = i;
+        for (int j = i; j < array.Length; j++)
+        {
+            if (array[j] >= array[minIndex])
+                continue;
+
+            minIndex = j;
+        }
+
+        return minIndex;
     }
 }
 
