@@ -187,7 +187,7 @@ WriteLine("Merge Sort");
 WriteLine("===========");
 
 int[] array1ms = { 8, 2, 4, 1, 3 };
-int[] array2ms = { 8, 2, 4, 1 };
+int[] array2ms = { 8, 2, 4 };
 int[] array3ms = { 10, 6, 5, 4, 30, 30, 2, 1 };
 int[] array4ms = Array.Empty<int>();
 int[]? array5ms = null;
@@ -201,4 +201,3 @@ WriteLine($"array1ms(after sorting):[{string.Join(", ", array1ms)}]");
 WriteLine($"array2ms(after sorting):[{string.Join(", ", array2ms)}]");
 WriteLine($"array3ms(after sorting):[{string.Join(", ", array3ms)}]");
 WriteLine($"array4ms(after sorting):[{string.Join(", ", array4ms)}]");
-
