@@ -69,6 +69,53 @@ static void InsertionSort(int[]? array)
     }
 }
 
+static void MergeSort(int[]? array)
+{
+    static void DevideIntoHalfs(int[] array, out int[] left, out int[] right)
+    {
+        int middle = array.Length / 2;
+        int rightLength = middle + array.Length % 2;
+        left = new int[middle];
+        right = new int[rightLength];
+        Array.Copy(array, left, middle);
+        Array.ConstrainedCopy(array, middle, right, 0, rightLength);
+    }
+
+    static void MergeResults(int[] array, int[] left, int[] right)
+    {
+        int i = 0, j = 0;
+
+        while ((i < left.Length && j < right.Length))
+        {
+            if (left[i] >= right[j])
+            {
+                array[i + j] = right[j++];
+                array[i + j] = Math.Max(left[i], right[j - 1]);
+                continue;
+            }
+            else
+            {
+                array[i + j] = left[i++];
+                array[i + j] = Math.Max(left[i - 1], right[j]);
+            }
+        }
+
+        if (right.Length > 0 && array[^1] < array[^2])
+            array[^1] = Math.Max(left[^1], right[^1]);
+    }
+
+    if (array == null)
+        return;
+
+    if (array.Length == 1 || array.Length == 0)
+        return;
+
+    DevideIntoHalfs(array, out var left, out var right);
+    MergeSort(left);
+    MergeSort(right);
+    MergeResults(array, left, right);
+}
+
 int[] array1bs = { 8, 2, 4, 1, 3 };
 int[] array2bs = { 8, 2, 4, 1 };
 int[] array3bs = { 8, 4, 3, 1 };
@@ -128,4 +175,24 @@ WriteLine($"array1is(after sorting):[{string.Join(", ", array1is)}]");
 WriteLine($"array2is(after sorting):[{string.Join(", ", array2is)}]");
 WriteLine($"array3is(after sorting):[{string.Join(", ", array3is)}]");
 WriteLine($"array4is(after sorting):[{string.Join(", ", array4is)}]");
+
+WriteLine("");
+WriteLine("Merge Sort");
+WriteLine("===========");
+
+int[] array1ms = { 8, 2, 4, 1, 3 };
+int[] array2ms = { 8, 2, 4, 1 };
+int[] array3ms = { 10, 6, 5, 4, 30, 30, 2, 1 };
+int[] array4ms = Array.Empty<int>();
+int[]? array5ms = null;
+
+MergeSort(array3ms);
+MergeSort(array1ms);
+MergeSort(array2ms);
+MergeSort(array4ms);
+MergeSort(array5ms);
+WriteLine($"array1ms(after sorting):[{string.Join(", ", array1ms)}]");
+WriteLine($"array2ms(after sorting):[{string.Join(", ", array2ms)}]");
+WriteLine($"array3ms(after sorting):[{string.Join(", ", array3ms)}]");
+WriteLine($"array4ms(after sorting):[{string.Join(", ", array4ms)}]");
 
