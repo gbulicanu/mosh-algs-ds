@@ -71,17 +71,23 @@ static void InsertionSort(int[]? array)
 
 static void MergeSort(int[]? array)
 {
-    static void DevideIntoHalfs(int[] array, out int[] left, out int[] right)
+    static (int[] left, int[] right)
+        DevideIntoHalfs(int[] array)
     {
         int middle = array.Length / 2;
-        int rightLength = middle + array.Length % 2;
-        left = new int[middle];
-        right = new int[rightLength];
-        Array.Copy(array, left, middle);
-        Array.ConstrainedCopy(array, middle, right, 0, rightLength);
+
+        int[] left = new int[middle];
+        for (int i = 0; i < middle; i++)
+            left[i] = array[i];
+
+        int[] right = new int[middle + array.Length % 2];
+        for (int i = middle; i < array.Length; i++)
+            right[i - middle] = array[i];
+
+        return (left, right);
     }
 
-    static void MergeResults(int[] array, int[] left, int[] right)
+    static void MergeSorted(int[] array, int[] left, int[] right)
     {
         int i = 0, j = 0;
 
@@ -110,10 +116,10 @@ static void MergeSort(int[]? array)
     if (array.Length == 1 || array.Length == 0)
         return;
 
-    DevideIntoHalfs(array, out var left, out var right);
+    var (left, right) = DevideIntoHalfs(array);
     MergeSort(left);
     MergeSort(right);
-    MergeResults(array, left, right);
+    MergeSorted(array, left, right);
 }
 
 int[] array1bs = { 8, 2, 4, 1, 3 };
@@ -186,9 +192,9 @@ int[] array3ms = { 10, 6, 5, 4, 30, 30, 2, 1 };
 int[] array4ms = Array.Empty<int>();
 int[]? array5ms = null;
 
-MergeSort(array3ms);
 MergeSort(array1ms);
 MergeSort(array2ms);
+MergeSort(array3ms);
 MergeSort(array4ms);
 MergeSort(array5ms);
 WriteLine($"array1ms(after sorting):[{string.Join(", ", array1ms)}]");
