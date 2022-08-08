@@ -89,25 +89,21 @@ static void MergeSort(int[]? array)
 
     static void MergeSorted(int[] array, int[] left, int[] right)
     {
-        int i = 0, j = 0;
+        int i = 0, j = 0, k = 0;
 
-        while ((i < left.Length && j < right.Length))
+        while (i < left.Length && j < right.Length)
         {
-            if (left[i] >= right[j])
-            {
-                array[i + j] = right[j++];
-                array[i + j] = Math.Max(left[i], right[j - 1]);
-                continue;
-            }
+            if (left[i] <= right[j])
+                array[k++] = left[i++];
             else
-            {
-                array[i + j] = left[i++];
-                array[i + j] = Math.Max(left[i - 1], right[j]);
-            }
+                array[k++] = right[j++];
         }
 
-        if (right.Length > 0 && array[^1] < array[^2])
-            array[^1] = Math.Max(left[^1], right[^1]);
+        while (i < left.Length)
+            array[k++] = left[i++];
+
+        while (j < right.Length)
+            array[k++] = right[j++];
     }
 
     if (array == null)
