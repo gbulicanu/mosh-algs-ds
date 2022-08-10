@@ -36,7 +36,7 @@ static string? ReverseWords(string? sentence)
     if (sentence == null)
         return string.Empty;
 
-    string[] words = sentence.Split(" ");
+    string[] words = sentence.Trim().Split(" ");
     Array.Reverse(words);
 
     return string.Join(' ', words);
