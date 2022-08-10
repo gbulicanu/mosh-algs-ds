@@ -82,6 +82,28 @@ static int TernarySearch(int[] array, int target)
     return TernarySearch(array, target, 0, array.Length - 1);
 }
 
+static int JumpSearch(int[] array, int target)
+{
+    int blockSize = (int)Math.Sqrt(array.Length);
+    int start = 0;
+    int next = blockSize;
+    
+    while (start < array.Length
+        && array[next - 1] < target)
+    {
+        start = next;
+        next += blockSize;
+        if (next > array.Length)
+            next = array.Length;
+    }
+
+    for (int i = start; i < next; i++)
+        if (array[i] == target)
+            return i;
+
+    return -1;
+}
+
 int[] input1 = { 1, 2, 3, 4, 8, 22 };
 string input1Rep = string.Join(", ", input1);
 
@@ -116,3 +138,12 @@ WriteLine($"TernarySearch([{input1Rep}], 1), {TernarySearch(input1, 1)}");
 WriteLine($"TernarySearch([{input1Rep}], 4), {TernarySearch(input1, 4)}");
 WriteLine($"TernarySearch([{input1Rep}], 22), {TernarySearch(input1, 22)}");
 WriteLine($"TernarySearch([{input1Rep}], 17), {TernarySearch(input1, 17)}");
+
+WriteLine();
+WriteLine("Jump Search");
+WriteLine("===========");
+
+WriteLine($"JumpSearch([{input1Rep}], 1), {JumpSearch(input1, 1)}");
+WriteLine($"JumpSearch([{input1Rep}], 4), {JumpSearch(input1, 4)}");
+WriteLine($"JumpSearch([{input1Rep}], 22), {JumpSearch(input1, 22)}");
+WriteLine($"JumpSearch([{input1Rep}], 17), {JumpSearch(input1, 17)}");
