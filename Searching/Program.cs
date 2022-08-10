@@ -107,17 +107,14 @@ static int JumpSearch(int[] array, int target)
 static int ExponentialSearch(int[] array, int target)
 {
     int bound = 1;
-    int left = 0;
-    while (bound < array.Length && array[bound] < target)
-    {
-        left = bound;
+    while (bound < array.Length
+        && array[bound] < target)
         bound *= 2;
-    }
 
     return BinarySearchInternal(
         array,
         target,
-        left,
+        bound / 2,
         bound < array.Length ? bound : array.Length);
 }
 
