@@ -32,6 +32,27 @@ static int BinarySearch(int[] array, int target)
 	return BinarySearch(array, target, 0, array.Length -1);
 }
 
+static int BinarySearchIterative(int[] array, int target)
+{
+    int left = 0;
+    int right = array.Length - 1;
+
+    while (left <= right)
+    {
+        int middle = (left + right) / 2;
+
+        if (array[middle] == target)
+            return middle;
+
+        if (target < array[middle])
+            right = middle - 1;
+        else
+            left = middle + 1;
+    }
+
+    return -1;
+}
+
 int[] input1 = { 1, 2, 3, 4, 8, 22 };
 string input1Rep = string.Join(", ", input1);
 
@@ -44,7 +65,16 @@ WriteLine();
 WriteLine("Binary Search");
 WriteLine("=============");
 
-WriteLine($"LinearSearch([{input1Rep}], 1), {BinarySearch(input1, 1)}");
-WriteLine($"LinearSearch([{input1Rep}], 4), {BinarySearch(input1, 4)}");
-WriteLine($"LinearSearch([{input1Rep}], 22), {BinarySearch(input1, 22)}");
-WriteLine($"LinearSearch([{input1Rep}], 17), {BinarySearch(input1, 17)}");
+WriteLine($"BinarySearch([{input1Rep}], 1), {BinarySearch(input1, 1)}");
+WriteLine($"BinarySearch([{input1Rep}], 4), {BinarySearch(input1, 4)}");
+WriteLine($"BinarySearch([{input1Rep}], 22), {BinarySearch(input1, 22)}");
+WriteLine($"BinarySearch([{input1Rep}], 17), {BinarySearch(input1, 17)}");
+
+WriteLine();
+WriteLine("Binary Search Iterative");
+WriteLine("=======================");
+
+WriteLine($"BinarySearchIterative([{input1Rep}]),  {BinarySearchIterative(input1, 1)}");
+WriteLine($"BinarySearchIterative([{input1Rep}], 4), {BinarySearchIterative(input1, 4)}");
+WriteLine($"BinarySearchIterative([{input1Rep}], 22), {BinarySearchIterative(input1, 22)}");
+WriteLine($"BinarySearchIterative([{input1Rep}], 17), {BinarySearchIterative(input1, 17)}");
