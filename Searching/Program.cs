@@ -111,11 +111,10 @@ static int ExponentialSearch(int[] array, int target)
         && array[bound] < target)
         bound *= 2;
 
-    return BinarySearchInternal(
-        array,
-        target,
-        bound / 2,
-        bound < array.Length ? bound : array.Length);
+    int left = bound / 2;
+    int right = Math.Min(bound, array.Length - 1);
+
+    return BinarySearchInternal(array, target, left, right);
 }
 
 int[] input1 = { 1, 2, 3, 4, 8, 22 };
