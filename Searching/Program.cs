@@ -2,6 +2,22 @@
 WriteLine("Linear Search");
 WriteLine("=============");
 
+static int BinarySearchInternal(int[] array, int target, int left, int right)
+{
+    if (right < left)
+        return -1;
+
+    int middle = (left + right) / 2;
+
+    if (array[middle] == target)
+        return middle;
+
+    if (target < array[middle])
+        return BinarySearchInternal(array, target, left, middle - 1);
+
+    return BinarySearchInternal(array, target, middle + 1, right);
+}
+
 static int LinearSearch(int[] input, int item)
 {
 	for (int i = 0; i < input.Length; i++)
@@ -13,23 +29,7 @@ static int LinearSearch(int[] input, int item)
 
 static int BinarySearch(int[] array, int target)
 {
-	static int BinarySearch(int[] array, int target, int left, int right)
-	{
-		if (right < left)
-			return -1;
-
-		int middle = (left + right) / 2;
-
-        if (array[middle] == target)
-            return middle;
-
-        if (target < array[middle])
-            return BinarySearch(array, target, left, middle - 1);
-        
-		return BinarySearch(array, target, middle + 1, right);
-    }
-
-	return BinarySearch(array, target, 0, array.Length -1);
+	return BinarySearchInternal(array, target, 0, array.Length -1);
 }
 
 static int BinarySearchIterative(int[] array, int target)
@@ -104,6 +104,23 @@ static int JumpSearch(int[] array, int target)
     return -1;
 }
 
+static int ExponentialSearch(int[] array, int target)
+{
+    int bound = 1;
+    int left = 0;
+    while (bound < array.Length && array[bound] < target)
+    {
+        left = bound;
+        bound *= 2;
+    }
+
+    return BinarySearchInternal(
+        array,
+        target,
+        left,
+        bound < array.Length ? bound : array.Length);
+}
+
 int[] input1 = { 1, 2, 3, 4, 8, 22 };
 string input1Rep = string.Join(", ", input1);
 
@@ -147,3 +164,12 @@ WriteLine($"JumpSearch([{input1Rep}], 1), {JumpSearch(input1, 1)}");
 WriteLine($"JumpSearch([{input1Rep}], 4), {JumpSearch(input1, 4)}");
 WriteLine($"JumpSearch([{input1Rep}], 22), {JumpSearch(input1, 22)}");
 WriteLine($"JumpSearch([{input1Rep}], 17), {JumpSearch(input1, 17)}");
+
+WriteLine();
+WriteLine("Exponential Search");
+WriteLine("===========");
+
+WriteLine($"ExponentialSearch([{input1Rep}], 1), {ExponentialSearch(input1, 1)}");
+WriteLine($"ExponentialSearch([{input1Rep}], 4), {ExponentialSearch(input1, 4)}");
+WriteLine($"ExponentialSearch([{input1Rep}], 22), {ExponentialSearch(input1, 22)}");
+WriteLine($"ExponentialSearch([{input1Rep}], 17), {ExponentialSearch(input1, 17)}");
