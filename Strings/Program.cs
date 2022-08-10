@@ -62,24 +62,21 @@ static char GetMaxOccuringChar(string input)
     if (input == null)
         return char.MinValue;
 
-    Dictionary<char, int> occurancesCounts = new();
-    foreach (char c in input.ToLower())
-        if (!occurancesCounts.ContainsKey(c))
-            occurancesCounts.Add(c, 1);
-        else
-            occurancesCounts[c]++;
+    const int asciiSize = 256;
+    int[] frequncies = new int[asciiSize];
+    foreach (var c in input)
+        frequncies[c]++;
 
-
-    char maxOccuranceChar = char.MinValue;
-    int maxOccurances = 0;
-    foreach (var (c, ocurrances) in occurancesCounts)
-        if (ocurrances > maxOccurances) 
+    int max = 0;
+    int maxCharCode = 0;
+    for (int i = 0; i < asciiSize; i++)
+        if (frequncies[i] > max)
         {
-            maxOccurances = ocurrances;
-            maxOccuranceChar = c;
+            max = frequncies[i];
+            maxCharCode = i;
         }
 
-    return maxOccuranceChar;
+    return (char)maxCharCode;
 }
 
 string? input = "hello";
