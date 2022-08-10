@@ -214,14 +214,19 @@ static void BucketSort(int[]? array)
         return;
 
     int min = MinMax(array, min: true);
-    int max = MinMax(array, min: false);
     int k = 0;
-    foreach (List<int> bucket in CreateBuckets(array, max - min + 1))
+    List<int>[] buckets = CreateBuckets(array, array.Length / 2 + min + 1);
+    foreach (List<int> bucket in buckets)
     {
-        int[] bucketArray = bucket.ToArray();
-        QuickSort(bucketArray);
-        foreach (var item in bucketArray)
-            array[k++] = item;
+        if (bucket.Count > 1)
+        {
+            int[] bucketArray = bucket.ToArray();
+            QuickSort(bucketArray);
+            foreach (var item in bucketArray)
+                array[k++] = item;
+        }
+        else if(bucket.Count == 1)
+            array[k++] =  bucket[0];
     }
 }
 
