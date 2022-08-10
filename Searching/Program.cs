@@ -11,26 +11,25 @@ static int LinearSearch(int[] input, int item)
 	return -1;
 }
 
-static int BinarySearch(int[] input, int item)
+static int BinarySearch(int[] array, int target)
 {
-	static int BinarySearch(int[] input, int item, int start, int end)
+	static int BinarySearch(int[] array, int target, int left, int right)
 	{
-		if (start > end)
+		if (right < left)
 			return -1;
 
-		if (input[start] == item)
-			return start;
+		int middle = (left + right) / 2;
 
-		int middle = (start + end) / 2;
-		if (input[middle] < item)
-			return BinarySearch(input, item, middle + 1, end);
-		else
-			return BinarySearch(input, item, start, middle - 1);
+        if (array[middle] == target)
+            return middle;
+
+        if (target < array[middle])
+            return BinarySearch(array, target, left, middle - 1);
+        
+		return BinarySearch(array, target, middle + 1, right);
     }
 
-	Array.Sort(input);
-
-	return BinarySearch(input, item, 0, input.Length -1);
+	return BinarySearch(array, target, 0, array.Length -1);
 }
 
 int[] input1 = { 1, 2, 3, 4, 8, 22 };
