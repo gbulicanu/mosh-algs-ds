@@ -191,7 +191,7 @@ static void CountingSort(int[]? array)
     Sort(array, MinMax(array, min: false));
 }
 
-static void BucketSort(int[]? array, int numberOfBuckets = 3)
+static void BucketSort(int[]? array)
 {
     static List<int>[] CreateBuckets(int[] array, int numberOfBuckets)
     {
