@@ -43,6 +43,9 @@ static bool AreRotation(string? input1, string? input2)
 
 static string RemoveDuplicates(string input)
 {
+    if (input == null)
+        return string.Empty;
+
     StringBuilder output = new();
     HashSet<char> seen = new();
     foreach (char c in input.ToLower())
@@ -52,6 +55,31 @@ static string RemoveDuplicates(string input)
         }
 
     return output.ToString();
+}
+
+static char GetMaxOccuringChar(string input)
+{
+    if (input == null)
+        return char.MinValue;
+
+    Dictionary<char, int> occurancesCounts = new();
+    foreach (char c in input.ToLower())
+        if (!occurancesCounts.ContainsKey(c))
+            occurancesCounts.Add(c, 1);
+        else
+            occurancesCounts[c]++;
+
+
+    char maxOccuranceChar = char.MinValue;
+    int maxOccurances = 0;
+    foreach (var (c, ocurrances) in occurancesCounts)
+        if (ocurrances > maxOccurances) 
+        {
+            maxOccurances = ocurrances;
+            maxOccuranceChar = c;
+        }
+
+    return maxOccuranceChar;
 }
 
 string? input = "hello";
@@ -65,3 +93,4 @@ WriteLine($"ReverseWords(\"{input1}\"): {ReverseWords(input1)}");
 WriteLine($"AreRotation(\"{inputRotation1}\", " +
     $"\"{inputRotation2}\"): {AreRotation(inputRotation1, inputRotation2)}");
 WriteLine($"RemoveDuplicates(\"{input}\"): {RemoveDuplicates(input)}");
+WriteLine($"GetMaxOccuringChar(\"{input}\"): {GetMaxOccuringChar(input)}");
