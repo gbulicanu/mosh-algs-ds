@@ -118,6 +118,39 @@ static void MergeSort(int[]? array)
     MergeSorted(array, left, right);
 }
 
+static void QuickSort(int[]? array)
+{
+    static int Partition(int[] array, int start, int end)
+    {
+        var pivot = array[end];
+        int boundary = start - 1;
+
+        for (int i = start; i <= end; i++)
+            if (array[i] <= pivot)
+                Swap(array, i, ++boundary);
+
+        return boundary;
+    }
+
+    static void Sort(int[] array, int start, int end)
+    {
+        if (start >= end)
+            return;
+
+        var boudary = Partition(array, start, end);
+        Sort(array, start, boudary - 1);
+        Sort(array, boudary + 1, end);
+    }
+
+    if (array == null)
+        return;
+
+    if (array.Length < 1)
+        return;
+
+    Sort(array, 0, array.Length - 1);
+}
+
 int[] array1bs = { 8, 2, 4, 1, 3 };
 int[] array2bs = { 8, 2, 4, 1 };
 int[] array3bs = { 8, 4, 3, 1 };
@@ -138,7 +171,7 @@ WriteLine($"array2bs(after sorting):[{string.Join(", ", array2bs)}]");
 WriteLine($"array3bs(after sorting):[{string.Join(", ", array3bs)}]");
 WriteLine($"array4bs(after sorting):[{string.Join(", ", array4bs)}]");
 
-int[] array1ss = { 8, 2, 4, 1, 3 };
+int[] array1ss = { 15, 6, 3, 1, 22, 10, 13 };
 int[] array2ss = { 8, 2, 4, 1 };
 int[] array3ss = { 8, 4, 3, 1 };
 int[] array4ss = Array.Empty<int>();
@@ -197,3 +230,23 @@ WriteLine($"array1ms(after sorting):[{string.Join(", ", array1ms)}]");
 WriteLine($"array2ms(after sorting):[{string.Join(", ", array2ms)}]");
 WriteLine($"array3ms(after sorting):[{string.Join(", ", array3ms)}]");
 WriteLine($"array4ms(after sorting):[{string.Join(", ", array4ms)}]");
+
+WriteLine("");
+WriteLine("Quick Sort");
+WriteLine("===========");
+
+int[] array1qs = { 15, 6, 3, 1, 22, 10, 13 }; // 6 3 1 10 P13 15 22
+int[] array2qs = { 8, 2, 4 };
+int[] array3qs = { 10, 6, 5, 4, 30, 30, 2, 1 };
+int[] array4qs = Array.Empty<int>();
+int[]? array5qs = null;
+
+QuickSort(array1qs);
+QuickSort(array2qs);
+QuickSort(array3qs);
+QuickSort(array4qs);
+QuickSort(array5qs);
+WriteLine($"array1qs(after sorting):[{string.Join(", ", array1qs)}]");
+WriteLine($"array2qs(after sorting):[{string.Join(", ", array2qs)}]");
+WriteLine($"array3qs(after sorting):[{string.Join(", ", array3qs)}]");
+WriteLine($"array4qs(after sorting):[{string.Join(", ", array4qs)}]");
