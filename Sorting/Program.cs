@@ -151,6 +151,44 @@ static void QuickSort(int[]? array)
     Sort(array, 0, array.Length - 1);
 }
 
+static void CountingSort(int[]? array)
+{
+    static int[] BuildCounts(int[] array, int max)
+    {
+        int[] result = new int[max + 1];
+        foreach (int item in array)
+            result[item]++;
+
+        return result;
+    }
+
+    static int Max(int[] array)
+    {
+        int max = int.MinValue;
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] > max)
+                max = array[i];
+        }
+
+        return max;
+    }
+
+    static void Sort(int[] array, int max) {
+        int k = 0;
+        int[] counts = BuildCounts(array, max);
+        for (int i = 0; i < counts.Length; i++)
+            if (counts[i] > 0)
+                for (int j = 0; j < counts[i]; j++)
+                    array[k++] = i;
+    }
+
+    if (array == null || array.Length < 2)
+        return;
+
+    Sort(array, Max(array));
+}
+
 int[] array1bs = { 8, 2, 4, 1, 3 };
 int[] array2bs = { 8, 2, 4, 1 };
 int[] array3bs = { 8, 4, 3, 1 };
@@ -250,3 +288,23 @@ WriteLine($"array1qs(after sorting):[{string.Join(", ", array1qs)}]");
 WriteLine($"array2qs(after sorting):[{string.Join(", ", array2qs)}]");
 WriteLine($"array3qs(after sorting):[{string.Join(", ", array3qs)}]");
 WriteLine($"array4qs(after sorting):[{string.Join(", ", array4qs)}]");
+
+WriteLine("");
+WriteLine("Counting Sort");
+WriteLine("=============");
+
+int[] array1cs = { 15, 6, 3, 1, 22, 10, 13 };
+int[] array2cs = { 8, 2, 4 };
+int[] array3cs = { 10, 6, 5, 4, 30, 30, 2, 1 };
+int[] array4cs = Array.Empty<int>();
+int[]? array5cs = null;
+
+CountingSort(array1cs);
+CountingSort(array2cs);
+CountingSort(array3cs);
+CountingSort(array4cs);
+CountingSort(array5cs);
+WriteLine($"array1cs(after sorting):[{string.Join(", ", array1cs)}]");
+WriteLine($"array2cs(after sorting):[{string.Join(", ", array2cs)}]");
+WriteLine($"array3cs(after sorting):[{string.Join(", ", array3cs)}]");
+WriteLine($"array4cs(after sorting):[{string.Join(", ", array4cs)}]");
