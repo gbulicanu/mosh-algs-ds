@@ -53,6 +53,35 @@ static int BinarySearchIterative(int[] array, int target)
     return -1;
 }
 
+static int TernarySearch(int[] array, int target)
+{
+    static int TernarySearch(int[] array, int target, int left, int right)
+    {
+        if (left > right)
+            return -1;
+
+        int partitionSize = (right - left) / 3;
+        int mid1 = left + partitionSize;
+        int mid2 = right - partitionSize;
+
+        if (array[mid1] == target)
+            return mid1;
+
+        if (array[mid2] == target)
+            return mid2;
+
+        if (target < array[mid1])
+            return TernarySearch(array, target, left, mid1 - 1);
+
+        if (target > array[mid2])
+            return TernarySearch(array, target, mid2 + 1, right);
+
+        return TernarySearch(array, target, mid1 + 1, mid2 - 1);
+    }
+    
+    return TernarySearch(array, target, 0, array.Length - 1);
+}
+
 int[] input1 = { 1, 2, 3, 4, 8, 22 };
 string input1Rep = string.Join(", ", input1);
 
@@ -78,3 +107,12 @@ WriteLine($"BinarySearchIterative([{input1Rep}]),  {BinarySearchIterative(input1
 WriteLine($"BinarySearchIterative([{input1Rep}], 4), {BinarySearchIterative(input1, 4)}");
 WriteLine($"BinarySearchIterative([{input1Rep}], 22), {BinarySearchIterative(input1, 22)}");
 WriteLine($"BinarySearchIterative([{input1Rep}], 17), {BinarySearchIterative(input1, 17)}");
+
+WriteLine();
+WriteLine("Ternary Search");
+WriteLine("=============");
+
+WriteLine($"TernarySearch([{input1Rep}], 1), {TernarySearch(input1, 1)}");
+WriteLine($"TernarySearch([{input1Rep}], 4), {TernarySearch(input1, 4)}");
+WriteLine($"TernarySearch([{input1Rep}], 22), {TernarySearch(input1, 22)}");
+WriteLine($"TernarySearch([{input1Rep}], 17), {TernarySearch(input1, 17)}");
