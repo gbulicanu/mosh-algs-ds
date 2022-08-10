@@ -1,11 +1,4 @@
-﻿WriteLine();
-WriteLine("Count Vowels");
-WriteLine("============");
-
-string? input = "hello";
-string? input1 = "Trees are beautiful";
-
-static int CountVowels(string? input)
+﻿static int CountVowels(string? input)
 {
     if (input == null)
         return 0;
@@ -42,6 +35,33 @@ static string? ReverseWords(string? sentence)
     return string.Join(' ', words);
 }
 
+static bool AreRotation(string? input1, string? input2)
+    => (!string.IsNullOrWhiteSpace(input1)
+        && !string.IsNullOrWhiteSpace(input2)
+        && input1.Length == input2.Length
+        && (input1 + input1).Contains(input2));
+
+static string RemoveDuplicates(string input)
+{
+    StringBuilder output = new();
+    HashSet<char> seen = new();
+    foreach (char c in input.ToLower())
+        if (!seen.Contains(c))
+        {
+            seen.Add(c); output.Append(c);
+        }
+
+    return output.ToString();
+}
+
+string? input = "hello";
+string? input1 = "Trees are beautiful";
+string? inputRotation1 = "ABCD";
+string? inputRotation2 = "DABC";
+
 WriteLine($"CountVowels(\"{input}\"): {CountVowels(input)}");
 WriteLine($"Reverse(\"{input}\"): {Reverse(input)}");
 WriteLine($"ReverseWords(\"{input1}\"): {ReverseWords(input1)}");
+WriteLine($"AreRotation(\"{inputRotation1}\", " +
+    $"\"{inputRotation2}\"): {AreRotation(inputRotation1, inputRotation2)}");
+WriteLine($"RemoveDuplicates(\"{input}\"): {RemoveDuplicates(input)}");
