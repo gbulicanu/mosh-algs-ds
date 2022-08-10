@@ -3,6 +3,21 @@
 static void Swap(int[] array, int index1, int index2)
     => (array[index1], array[index2]) = (array[index2], array[index1]);
 
+static int MinMax(int[] array, bool min = true)
+{
+    int minMax = min ? int.MaxValue : int.MinValue;
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (!min && array[i] > minMax)
+            minMax = array[i];
+        
+        if (min && array[i] < minMax)
+            minMax = array[i];
+    }
+
+    return minMax;
+}
+
 static void BubbleSort(int[]? array)
 {
 	if (array == null)
@@ -162,31 +177,52 @@ static void CountingSort(int[]? array)
         return result;
     }
 
-    static int Max(int[] array)
-    {
-        int max = int.MinValue;
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] > max)
-                max = array[i];
-        }
-
-        return max;
-    }
-
     static void Sort(int[] array, int max) {
         int k = 0;
         int[] counts = BuildCounts(array, max);
         for (int i = 0; i < counts.Length; i++)
-            if (counts[i] > 0)
-                for (int j = 0; j < counts[i]; j++)
-                    array[k++] = i;
+            for (int j = 0; j < counts[i]; j++)
+                array[k++] = i;
     }
 
     if (array == null || array.Length < 2)
         return;
 
-    Sort(array, Max(array));
+    Sort(array, MinMax(array, min: false));
+}
+
+static void BucketSort(int[]? array, int numberOfBuckets = 3)
+{
+    static List<int>[] CreateBuckets(int[] array, int numberOfBuckets)
+    {
+        List<int>[] buckets = new List<int>[numberOfBuckets];
+        for (int i = 0; i < numberOfBuckets; i++)
+        {
+            buckets[i] = new List<int>();
+        }
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            var selectedBucket = (array[i] / numberOfBuckets);
+            buckets[selectedBucket].Add(array[i]);
+        }
+
+        return buckets;
+    }
+
+    if (array == null || array.Length < 2)
+        return;
+
+    int min = MinMax(array, min: true);
+    int max = MinMax(array, min: false);
+    int k = 0;
+    foreach (List<int> bucket in CreateBuckets(array, max - min + 1))
+    {
+        int[] bucketArray = bucket.ToArray();
+        QuickSort(bucketArray);
+        foreach (var item in bucketArray)
+            array[k++] = item;
+    }
 }
 
 int[] array1bs = { 8, 2, 4, 1, 3 };
@@ -308,3 +344,23 @@ WriteLine($"array1cs(after sorting):[{string.Join(", ", array1cs)}]");
 WriteLine($"array2cs(after sorting):[{string.Join(", ", array2cs)}]");
 WriteLine($"array3cs(after sorting):[{string.Join(", ", array3cs)}]");
 WriteLine($"array4cs(after sorting):[{string.Join(", ", array4cs)}]");
+
+WriteLine("");
+WriteLine("Bucket Sort - /w QuickSort");
+WriteLine("===========================");
+
+int[] array1bq = { 15, 6, 3, 1, 22, 10, 13 };
+int[] array2bq = { 8, 2, 4 };
+int[] array3bq = { 10, 6, 5, 4, 30, 30, 2, 1 };
+int[] array4bq = Array.Empty<int>();
+int[]? array5bq = null;
+
+BucketSort(array1bq);
+BucketSort(array2bq);
+BucketSort(array3bq);
+BucketSort(array4bq);
+BucketSort(array5bq);
+WriteLine($"array1bq(after sorting):[{string.Join(", ", array1bq)}]");
+WriteLine($"array2bq(after sorting):[{string.Join(", ", array2bq)}]");
+WriteLine($"array3bq(after sorting):[{string.Join(", ", array3bq)}]");
+WriteLine($"array4bq(after sorting):[{string.Join(", ", array4bq)}]");
