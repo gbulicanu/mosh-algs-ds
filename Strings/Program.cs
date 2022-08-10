@@ -31,19 +31,15 @@ static string? Reverse(string? input)
     return reversed.ToString();
 }
 
-static string? ReverseWords(string? input)
+static string? ReverseWords(string? sentence)
 {
-    if (input == null)
+    if (sentence == null)
         return string.Empty;
 
-    StringBuilder reversed = new();
-    string[] words = input.Split(" ");
-    for (int i = words.Length - 1; i >= 0; i--)
-        reversed.Append(words[i])
-            .Append(' ');
-    reversed.Remove(reversed.Length - 1, 1);
+    string[] words = sentence.Split(" ");
+    Array.Reverse(words);
 
-    return reversed.ToString();
+    return string.Join(' ', words);
 }
 
 WriteLine($"CountVowels(\"{input}\"): {CountVowels(input)}");
